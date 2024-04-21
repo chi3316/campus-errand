@@ -6,7 +6,8 @@
     "pages/login/login",
     "pages/register/register",
     "pages/test/test",
-    "pages/order-details/order-details"
+    "pages/order-details/order-details",
+    "pages/express-order/express-order"
   ],
   "subPackages": [],
   "window": {
@@ -40,5 +41,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

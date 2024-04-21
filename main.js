@@ -1,5 +1,7 @@
 import App from './App'
-
+//导入第三方组件库
+import uView from '@/uni_modules/uview-ui'
+Vue.use(uView)
 // #ifndef VUE3
 import'@/static/css/global.css'
 import Vue from 'vue'

@@ -17,18 +17,18 @@
 							<view>
 								<text class="uni-body" style="font-size: 30rpx;">订单已完成，相关信息已隐藏</text>
 							</view>
-
+							<!-- <u-tag text="money" plain size="mini" shape="circle"></u-tag> -->
 							<view class="rounded-box">
-								金额：5￥
+								金额 25￥
 							</view>
 							<!-- 右下角按钮容器 -->
 							<view class="button-container">
 								<view class="circle-button">
-									<uni-icons class="icon" type="chat" size="22" color="white"></uni-icons>
+									<uni-icons class="icon" type="chat" size="20" color="white"></uni-icons>
 									<text class="button-text">私信</text>
 								</view>
 								<view class="circle-button">
-									<uni-icons class="icon" type="phone" size="22" color="white"></uni-icons>
+									<uni-icons class="icon" type="phone" size="20" color="white"></uni-icons>
 									<text class="button-text">电话</text>
 								</view>
 							</view>
@@ -46,11 +46,11 @@
 						<!-- 左上角按钮容器 -->
 						<view class="right-up-button-container">
 							<view class="circle-button">
-								<uni-icons class="icon" type="chat" size="22" color="white"></uni-icons>
+								<uni-icons class="icon" type="chat" size="20" color="white"></uni-icons>
 								<text class="button-text">私信</text>
 							</view>
 							<view class="circle-button">
-								<uni-icons class="icon" type="phone" size="22" color="white"></uni-icons>
+								<uni-icons class="icon" type="phone" size="20" color="white"></uni-icons>
 								<text class="button-text">电话</text>
 							</view>
 						</view>
