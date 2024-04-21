@@ -1,10 +1,11 @@
 
 .category-item {
-	flex: 1; 
-	display: flex; 
-	justify-content: space-between; 
-	align-items: center; 
-	flex-direction: 
-	column; grid-gap: 20rpx;
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction:
+		column;
+	grid-gap: 20rpx;
 }
 

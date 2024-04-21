@@ -1,9 +1,5 @@
 {
   "navigationBarTitleText": "测试页面",
   "enablePullDownRefresh": false,
-  "usingComponents": {
-    "uni-notice-bar": "/uni_modules/uni-notice-bar/components/uni-notice-bar/uni-notice-bar",
-    "uni-card": "/uni_modules/uni-card/components/uni-card/uni-card",
-    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons"
-  }
+  "usingComponents": {}
 }

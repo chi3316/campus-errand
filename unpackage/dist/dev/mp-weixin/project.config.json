@@ -32,7 +32,8 @@
       "outputPath": ""
     },
     "disableUseStrict": false,
-    "useCompilerPlugins": false
+    "useCompilerPlugins": false,
+    "minifyWXML": true
   },
   "compileType": "miniprogram",
   "libVersion": "3.3.4",

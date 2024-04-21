@@ -53,6 +53,14 @@
 				"navigationBarTitleText" : "订单详情",
 				"enablePullDownRefresh" : false
 			}
+		},
+		{
+			"path" : "pages/express-order/express-order",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
 		}
 	],
 	"globalStyle": {
