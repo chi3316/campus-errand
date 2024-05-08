@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import request from '../../utils/request'
 	export default {
 		data() {
 			return {
@@ -61,7 +62,26 @@
 				success: (res) => {
 					if (res.confirm) {
 						// 用户点击确认后的操作
-						this.init()
+						uni.login({
+							"provider": "weixin",
+							"onlyAuthorize": true, // 微信登录仅请求授权认证
+							success: function(event){
+								const {code} = event
+								//客户端成功获取授权临时票据（code）,向业务服务器发起登录请求。
+								console.log("code : " + code)
+								const userLoginDTO = {
+								    code : code	
+								};
+								request.post("/user/user/login",userLoginDTO).then(res => {
+									// 请求成功，处理响应
+									console.log(res.data);
+								});
+							},
+							fail: function (err) {
+						        // 登录授权失败
+						        // err.code是错误码
+						    }
+						})
 					}
 				}
 			})
@@ -71,71 +91,23 @@
 			this.inter = null
 		},
 		methods: {
-			//封装微信获取用户code，避免嵌套
-			login() {
-				return new Promise((resolve, reject) => {
-					uni.login({
-						success(res) {
-							resolve(res);
-						},
-						fail(err) {
-							reject(err);
-						}
-					});
-				});
-			},
-			async getWechatOpenIdByCode(params) {
-			  try {
-			    const response = await uni.request({
-			      url: 'http://localhost:8080/user/login', // 替换成实际的后端接口地址
-			      method: 'GET',
-			      data: params,
-			    });
-			
-			    // 处理后端返回的数据
-			    const data = response.data;
-			
-			    return data; // 返回后端返回的数据
-			  } catch (error) {
-			    console.error('请求失败:', error);
-			    throw error; // 抛出异常，让调用者处理
-			  }
-			},
-			async init() {
-			    //调用微信登陆
-			    let res = await this.login()
-			    if (res.code && ['login:ok'].includes(res.errMsg)) {
-			        //后端通过code调用微信API返回openid/unionid/session_key参数， 存储起来,前端无法直接调用微信相关API
-			        let openIdRes = await getWechatOpenIdByCode({ code: res.code })
-					console.log('请求响应：',openIdRes)
-			        if (openIdRes.success) {
-			            let { openId, sessionKey } = openIdRes
-			            this.openId = openId
-			            this.sessionKey = sessionKey
-			        }
-			    } else {
-			        //异常处理，再次发起请求或者抛出异常
-			        // .....
-			    }
-			},
-
 			load() {
-				this.$request.get('/notice/selectAll').then(res => {
-					this.noticeList = res.data || []
-					let i = 0
-					this.content = this.noticeList.length ? this.noticeList[i].content : ''
+				// this.$request.get('/notice/selectAll').then(res => {
+				// 	this.noticeList = res.data || []
+				// 	let i = 0
+				// 	this.content = this.noticeList.length ? this.noticeList[i].content : ''
 
-					//切换公告内容
-					if (this.noticeList.length > 1) {
-						this.inter = setInterval(() => {
-							i++
-							if (i === this.noticeList.length) {
-								i = 0
-							}
-							this.content = this.noticeList[i].content
-						}, 5000)
-					}
-				})
+				// 	//切换公告内容
+				// 	if (this.noticeList.length > 1) {
+				// 		this.inter = setInterval(() => {
+				// 			i++
+				// 			if (i === this.noticeList.length) {
+				// 				i = 0
+				// 			}
+				// 			this.content = this.noticeList[i].content
+				// 		}, 5000)
+				// 	}
+				// })
 			}
 		}
 	}
