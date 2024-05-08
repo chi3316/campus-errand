@@ -19347,10 +19347,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var apiConfig = {
   dev: {
-    baseUrl: 'http://localhost:8080'
+    baseUrl: 'http://localhost:8081'
   },
   prod: {
-    baseUrl: 'http://localhost:8080'
+    baseUrl: 'http://localhost:8081'
   }
 };
 var _default = apiConfig;
@@ -19451,7 +19451,15 @@ exports.default = _default;
 /* 255 */,
 /* 256 */,
 /* 257 */,
-/* 258 */
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */
 /*!************************************************************************************************************************!*\
   !*** D:/code/weixin-applet/campus-errand-service/campus-errand/uni_modules/uni-forms/components/uni-forms/validate.js ***!
   \************************************************************************************************************************/
@@ -19467,9 +19475,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 57));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 259));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 260));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 262));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 267));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 268));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 270));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 59));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
@@ -20142,7 +20150,7 @@ var _default = SchemaValidator;
 exports.default = _default;
 
 /***/ }),
-/* 259 */
+/* 267 */
 /*!*********************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
   \*********************************************************/
@@ -20169,7 +20177,7 @@ function _inherits(subClass, superClass) {
 module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 260 */
+/* 268 */
 /*!**************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
   \**************************************************************************/
@@ -20177,7 +20185,7 @@ module.exports = _inherits, module.exports.__esModule = true, module.exports["de
 /***/ (function(module, exports, __webpack_require__) {
 
 var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 261);
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 269);
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
@@ -20189,7 +20197,7 @@ function _possibleConstructorReturn(self, call) {
 module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 261 */
+/* 269 */
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
   \**********************************************************************/
@@ -20205,7 +20213,7 @@ function _assertThisInitialized(self) {
 module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 262 */
+/* 270 */
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
   \***************************************************************/
@@ -20221,7 +20229,7 @@ function _getPrototypeOf(o) {
 module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 263 */
+/* 271 */
 /*!*********************************************************************************************************************!*\
   !*** D:/code/weixin-applet/campus-errand-service/campus-errand/uni_modules/uni-forms/components/uni-forms/utils.js ***!
   \*********************************************************************************************************************/
@@ -20556,14 +20564,6 @@ var isEqual = function isEqual(a, b) {
 exports.isEqual = isEqual;
 
 /***/ }),
-/* 264 */,
-/* 265 */,
-/* 266 */,
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
 /* 272 */,
 /* 273 */,
 /* 274 */,
@@ -20577,7 +20577,15 @@ exports.isEqual = isEqual;
 /* 282 */,
 /* 283 */,
 /* 284 */,
-/* 285 */
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */
 /*!*********************************************************************************************************************************!*\
   !*** D:/code/weixin-applet/campus-errand-service/campus-errand/uni_modules/uni-icons/components/uni-icons/uniicons_file_vue.js ***!
   \*********************************************************************************************************************************/
@@ -21080,19 +21088,30 @@ var fontData = [{
 exports.fontData = fontData;
 
 /***/ }),
-/* 286 */,
-/* 287 */,
-/* 288 */,
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
 /* 294 */,
 /* 295 */,
 /* 296 */,
 /* 297 */,
-/* 298 */
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */,
+/* 315 */,
+/* 316 */,
+/* 317 */
 /*!************************************************************************************!*\
   !*** D:/code/weixin-applet/campus-errand-service/campus-errand/static/banner1.png ***!
   \************************************************************************************/
@@ -21102,7 +21121,7 @@ exports.fontData = fontData;
 module.exports = "/static/banner1.png";
 
 /***/ }),
-/* 299 */
+/* 318 */
 /*!************************************************************************************!*\
   !*** D:/code/weixin-applet/campus-errand-service/campus-errand/static/banner2.png ***!
   \************************************************************************************/

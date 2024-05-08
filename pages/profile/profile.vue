@@ -4,7 +4,7 @@
 			<view class="box" style=" justify-content: space-between; margin-bottom: 20rpx;">
 				<view class="title">用户服务</view>
 				<view style="display: flex;">
-					<view class="grid-item-box" style="background-color: #fff;" @click="onClick">
+					<view class="grid-item-box" style="background-color: #fff;" @click="address">
 						<image src="../../static/地址.png" style="width: 50%; height: 92rpx;"></image>
 						<text class="text">我的地址</text>
 					</view>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+	import request from '@/utils/request';
 	export default {
 		data() {
 			return {
@@ -87,6 +88,16 @@
 		methods: {
 			onClick(e) {
 				console.log('执行click事件', e.data)
+			},
+			address() {
+				console.log('跳转到地址页面')
+				uni.navigateTo({
+					url: '/pages/address/address', // 跳转页面
+				})
+				// 发送 GET 请求
+				const response = request.get('/user/address/list').then(res => {
+					console.log('请求成功，数据:', res.data);
+				})
 			},
 		}
 	}
