@@ -206,7 +206,7 @@ var _request = _interopRequireDefault(__webpack_require__(/*! ../../utils/reques
 var _default = {
   data: function data() {
     return {
-      imgs: [__webpack_require__(/*! ../../static/banner1.png */ 317), __webpack_require__(/*! ../../static/banner2.png */ 318)],
+      imgs: [__webpack_require__(/*! ../../static/banner1.png */ 170), __webpack_require__(/*! ../../static/banner2.png */ 171)],
       interval: 3000,
       duration: 500,
       content: '这是测试版本~~~',
