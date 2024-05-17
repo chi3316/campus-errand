@@ -9483,7 +9483,7 @@ internalMixin(Vue);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-
+throw new Error("Module build failed (from ./node_modules/@dcloudio/webpack-uni-pages-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'D:\\code\\weixin-applet\\campus-errand-service\\campus-errand\\pages.json'");
 
 /***/ }),
 /* 27 */,
