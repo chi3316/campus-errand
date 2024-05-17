@@ -5,22 +5,22 @@
 				<view class="title">用户服务</view>
 				<view style="display: flex;">
 					<view class="grid-item-box" style="background-color: #fff;" @click="address">
-						<image src="../../static/地址.png" style="width: 50%; height: 92rpx;"></image>
+						<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%9C%B0%E5%9D%80.png" style="width: 50%; height: 92rpx;"></image>
 						<text class="text">我的地址</text>
 					</view>
 
 					<view class="grid-item-box" style="background-color: #fff;" @click="onClick">
-						<image src="../../static/收支.png" style="width: 50%; height: 92rpx;"></image>
+						<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E6%94%B6%E6%94%AF.png" style="width: 50%; height: 92rpx;"></image>
 						<text class="text">收支明细</text>
 					</view>
 
 					<view class="grid-item-box" style="background-color: #fff;" @click="onClick">
-						<image src="../../static/评价.png" style="width: 50%; height: 92rpx;"></image>
+						<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E8%AF%84%E4%BB%B7.png" style="width: 50%; height: 92rpx;"></image>
 						<text class="text">评价中心</text>
 					</view>
 
 					<view class="grid-item-box" style="background-color: #fff;" @click="onClick">
-						<image src="../../static/钱包.png" style="width: 50%; height: 92rpx;"></image>
+						<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E9%92%B1%E5%8C%85.png" style="width: 50%; height: 92rpx;"></image>
 						<text class="text">我的钱包</text>
 					</view>
 				</view>

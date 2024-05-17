@@ -13,22 +13,22 @@
 		</view>
 		<view style="display: flex;" class="box">
 			<view class="category-item">
-				<image src="../../static/快递.png" style="width: 50%;" mode="widthFix"></image>
+				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%BF%AB%E9%80%92.png" style="width: 50%;" mode="widthFix"></image>
 				<view>代取快递</view>
 			</view>
 
 			<view class="category-item">
-				<image src="../../static/取餐.png" style="width: 50%;" mode="widthFix"></image>
+				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%8F%96%E9%A4%90.png" style="width: 50%;" mode="widthFix"></image>
 				<view>代取餐品</view>
 			</view>
 
 			<view class="category-item">
-				<image src="../../static/零食.png" style="width: 50%;" mode="widthFix"></image>
+				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E9%9B%B6%E9%A3%9F.png" style="width: 50%;" mode="widthFix"></image>
 				<view>代买零食</view>
 			</view>
 
 			<view class="category-item">
-				<image src="../../static/花.png" style="width: 50%;" mode="widthFix"></image>
+				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E8%8A%B1.png" style="width: 50%;" mode="widthFix"></image>
 				<view>代买鲜花</view>
 			</view>
 		</view>
@@ -41,8 +41,9 @@ import request from '../../utils/request'
 		data() {
 			return {
 				imgs: [
-					require('../../static/banner1.png'),
-					require('../../static/banner2.png')
+					'https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/banner1.png',
+					'https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/banner2.png',
+					
 				],
 				interval: 3000,
 				duration: 500,
