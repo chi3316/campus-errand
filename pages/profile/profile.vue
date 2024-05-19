@@ -1,28 +1,9 @@
 <template>
-	<veiw>
 		<view style="margin: 20rpx">
 			<view class="box" style=" justify-content: space-between; margin-bottom: 20rpx;">
-				<view class="title">用户服务</view>
-				<view style="display: flex;">
-					<view class="grid-item-box" style="background-color: #fff;" @click="address">
-						<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%9C%B0%E5%9D%80.png" style="width: 50%; height: 92rpx;"></image>
-						<text class="text">我的地址</text>
-					</view>
-
-					<view class="grid-item-box" style="background-color: #fff;" @click="onClick">
-						<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E6%94%B6%E6%94%AF.png" style="width: 50%; height: 92rpx;"></image>
-						<text class="text">收支明细</text>
-					</view>
-
-					<view class="grid-item-box" style="background-color: #fff;" @click="onClick">
-						<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E8%AF%84%E4%BB%B7.png" style="width: 50%; height: 92rpx;"></image>
-						<text class="text">评价中心</text>
-					</view>
-
-					<view class="grid-item-box" style="background-color: #fff;" @click="onClick">
-						<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E9%92%B1%E5%8C%85.png" style="width: 50%; height: 92rpx;"></image>
-						<text class="text">我的钱包</text>
-					</view>
+				<view class="user-info-box" style="margin: 20rpx" @click="personalInfo">
+					<fui-avatar size="large" src="#"></fui-avatar>
+					<fui-text :text="username" :size="40" class="username-text"></fui-text>
 				</view>
 			</view>
 
@@ -44,12 +25,19 @@
 				</uni-list>
 			</view>
 		</view>
-	</veiw>
 </template>
 
 <script>
 	import request from '@/utils/request';
+	import fuiAvatar from "@/components/firstui/fui-avatar/fui-avatar.vue"
+	import fuiIcon from "@/components/firstui/fui-icon/fui-icon.vue"
+	import fuiText from "@/components/firstui/fui-text/fui-text.vue"
 	export default {
+		components: {
+			fuiAvatar,
+			fuiIcon,
+			fuiText,
+		},
 		data() {
 			return {
 				about: {
@@ -82,6 +70,7 @@
 					size: '22',
 					type: 'personadd'
 				},
+				username: '未登录',
 			}
 		},
 
@@ -89,14 +78,10 @@
 			onClick(e) {
 				console.log('执行click事件', e.data)
 			},
-			address() {
-				console.log('跳转到地址页面')
+			personalInfo() {
+				console.log('跳转到个人信息');
 				uni.navigateTo({
-					url: '/pages/address/address', // 跳转页面
-				})
-				// 发送 GET 请求
-				const response = request.get('/user/address/list').then(res => {
-					console.log('请求成功，数据:', res.data);
+					url: '/pages/personal-info/personal-info',
 				})
 			},
 		}
@@ -122,5 +107,15 @@
 		font-size: 19px;
 		font-weight: 700;
 		margin-bottom: 10rpx;
+	}
+
+	.user-info-box {
+		display: flex;
+		align-items: center;
+	}
+
+	.username-text {
+		margin-left: 12px;
+		margin-top: -30rpx;
 	}
 </style>
