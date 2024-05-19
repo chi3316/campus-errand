@@ -8,6 +8,27 @@
     "miniprogram": {
       "list": [
         {
+          "name": "新增地址页面",
+          "pathName": "pages/add-address/add-address",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "我的地址页面",
+          "pathName": "pages/address/address",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "个人信息页面",
+          "pathName": "pages/personal-info/personal-info",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "登录页面",
           "pathName": "pages/login/login",
           "query": "",

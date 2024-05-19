@@ -1,0 +1,47 @@
+
+.address-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.empty-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.address-content {
+	padding: 10px 0;
+}
+.divider {
+	width: 100%;
+	height: 1px;
+	background-color: #37CBE8;
+	margin-top: 410px;
+}
+.add-address {
+	display: flex;
+	flex-direction: column;
+	padding: 10px 0;
+	margin-top: 1px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.fui-card-content {
+	position: relative;
+	display: flex;
+	margin-left: 10px;
+	height: 40px;
+}
+.buttons-container {
+	position: absolute;
+	right: 10px;
+	display: flex;
+	align-items: center;
+}
+.edit-button {
+	margin-left: 10px;
+}
+.delete-button {
+	margin-left: 5px;
+}
+

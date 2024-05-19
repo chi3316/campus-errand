@@ -16,4 +16,12 @@
 	font-weight: 700;
 	margin-bottom: 10rpx;
 }
+.user-info-box {
+	display: flex;
+	align-items: center;
+}
+.username-text {
+	margin-left: 12px;
+	margin-top: -30rpx;
+}
 

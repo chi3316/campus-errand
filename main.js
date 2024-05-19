@@ -8,7 +8,7 @@ import Vue from 'vue'
 import './uni.promisify.adaptor'
 import request from '@/utils/request.js'
 Vue.prototype.$request = request
-
+Vue.prototype.$bus = new Vue();
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({

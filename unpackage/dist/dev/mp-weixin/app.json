@@ -8,7 +8,9 @@
     "pages/test/test",
     "pages/order-details/order-details",
     "pages/express-order/express-order",
-    "pages/address/address"
+    "pages/address/address",
+    "pages/personal-info/personal-info",
+    "pages/add-address/add-address"
   ],
   "subPackages": [],
   "window": {
