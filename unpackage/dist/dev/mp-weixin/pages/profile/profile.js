@@ -101,10 +101,10 @@ var components
 try {
   components = {
     uniList: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 263))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 265))
     },
     uniListItem: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 270))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 272))
     },
   }
 } catch (e) {
@@ -220,17 +220,17 @@ var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request */
 //
 var fuiAvatar = function fuiAvatar() {
   __webpack_require__.e(/*! require.ensure | components/firstui/fui-avatar/fui-avatar */ "components/firstui/fui-avatar/fui-avatar").then((function () {
-    return resolve(__webpack_require__(/*! @/components/firstui/fui-avatar/fui-avatar.vue */ 277));
+    return resolve(__webpack_require__(/*! @/components/firstui/fui-avatar/fui-avatar.vue */ 279));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var fuiIcon = function fuiIcon() {
   Promise.all(/*! require.ensure | components/firstui/fui-icon/fui-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/firstui/fui-icon/fui-icon")]).then((function () {
-    return resolve(__webpack_require__(/*! @/components/firstui/fui-icon/fui-icon.vue */ 284));
+    return resolve(__webpack_require__(/*! @/components/firstui/fui-icon/fui-icon.vue */ 286));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var fuiText = function fuiText() {
   __webpack_require__.e(/*! require.ensure | components/firstui/fui-text/fui-text */ "components/firstui/fui-text/fui-text").then((function () {
-    return resolve(__webpack_require__(/*! @/components/firstui/fui-text/fui-text.vue */ 292));
+    return resolve(__webpack_require__(/*! @/components/firstui/fui-text/fui-text.vue */ 294));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {

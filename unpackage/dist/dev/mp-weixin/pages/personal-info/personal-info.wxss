@@ -13,5 +13,47 @@
 	box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, .1);
 	margin: 10rpx;
 }
-
+.container {
+	display: flex;
+	align-items: center;
+	/* 垂直居中对齐 */
+	justify-content: space-between;
+	/* 使内容在两端对齐 */
+	width: 100%;
+	/* 确保容器占据可用宽度 */
+}
+.item {
+	flex-grow: 1;
+	/* 使列表项占据尽可能多的空间 */
+}
+.avatar {
+	margin-left: 10px;
+	/* 给头像一些左边距，以防与列表项重叠 */
+}
+.input-container {
+	margin-left: 10px;
+	/* 给输入框一些左边距，以防与列表项重叠 */
+}
+.uni-list-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+.nickname-input {
+	border: none;
+	/* 去除边框 */
+	padding: 0;
+	/* 去除内边距 */
+	width: auto;
+	/* 使输入框宽度自动调整 */
+	text-align: right;
+	/* 使输入框内容靠右 */
+	flex-grow: 1;
+	/* 使输入框占据剩余空间 */
+	margin-left: 15rpx;
+	/* 给输入框一些左边距 */
+	font-size: 16px;
+	/* 确保输入框字体大小与其他文本一致 */
+}
 

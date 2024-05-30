@@ -3,7 +3,6 @@
   "usingComponents": {
     "uni-list": "/uni_modules/uni-list/components/uni-list/uni-list",
     "uni-list-item": "/uni_modules/uni-list/components/uni-list-item/uni-list-item",
-    "uni-file-picker": "/uni_modules/uni-file-picker/components/uni-file-picker/uni-file-picker",
     "u-avatar": "/uni_modules/uview-ui/components/u-avatar/u-avatar",
     "fui-icon": "/components/firstui/fui-icon/fui-icon",
     "fui-list": "/components/firstui/fui-list/fui-list",

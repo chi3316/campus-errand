@@ -12,22 +12,24 @@
 				</fui-list-cell>
 			</fui-list> -->
 			<uni-list>
-				<view class="">
-					<view>
+				<view class="container">
+					<view class="item">
 						<uni-list-item :show-extra-icon="true" :extra-icon="persion" title="头像" />
 					</view>
 					<view class="avatar">
-						<uni-file-picker
-							disable-preview
-							:del-icon="false"
-							return-type="object" 
-							:list-styles="listStyles"
-						><u-avatar :src="src"></u-avatar></uni-file-picker>
-						
+						<u-avatar :src="src" size="40" @click="changeAvatar"></u-avatar>
 					</view>
 				</view>
 
-				<uni-list-item :show-extra-icon="true" :extra-icon="name" title="名字" :rightText=userName />
+				<view class="container">
+					<view class="item">
+						<uni-list-item :show-extra-icon="true" :extra-icon="name" title="名字" />
+					</view>
+					<view class="input-container">
+						<input type="nickname" v-model="nickName" placeholder="请输入昵称" class="nickname-input" />
+					</view>
+				</view>
+
 				<uni-list-item :show-extra-icon="true" :extra-icon="phone" title="电话" :rightText=phoneNumber />
 			</uni-list>
 		</view>
@@ -101,8 +103,9 @@
 					size: '24',
 					type: 'link'
 				},
-				userName: "习近平",
-				phoneNumber: "178****7975"
+				nickName: "跑跑乐用户",
+				phoneNumber: "178****7975",
+				src: 'https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/chatting.png' // 初始头像的 URL
 			}
 		},
 		methods: {
@@ -136,5 +139,54 @@
 		box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, .1);
 		margin: 10rpx;
 	}
-	
+
+
+	.container {
+		display: flex;
+		align-items: center;
+		/* 垂直居中对齐 */
+		justify-content: space-between;
+		/* 使内容在两端对齐 */
+		width: 100%;
+		/* 确保容器占据可用宽度 */
+	}
+
+	.item {
+		flex-grow: 1;
+		/* 使列表项占据尽可能多的空间 */
+	}
+
+	.avatar {
+		margin-left: 10px;
+		/* 给头像一些左边距，以防与列表项重叠 */
+	}
+
+	.input-container {
+		margin-left: 10px;
+		/* 给输入框一些左边距，以防与列表项重叠 */
+	}
+
+	.uni-list-item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+	}
+
+	.nickname-input {
+		border: none;
+		/* 去除边框 */
+		padding: 0;
+		/* 去除内边距 */
+		width: auto;
+		/* 使输入框宽度自动调整 */
+		text-align: right;
+		/* 使输入框内容靠右 */
+		flex-grow: 1;
+		/* 使输入框占据剩余空间 */
+		margin-left: 15rpx;
+		/* 给输入框一些左边距 */
+		font-size: 16px;
+		/* 确保输入框字体大小与其他文本一致 */
+	}
 </style>
