@@ -83,6 +83,27 @@
 			{
 				"navigationBarTitleText" : "新增地址"
 			}
+		},
+		{
+			"path" : "pages/about-us/about-us",
+			"style" : 
+			{
+				"navigationBarTitleText" : "关于我们"
+			}
+		},
+		{
+			"path" : "pages/cooperative-complaint/cooperative-complaint",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/feedback/feedback",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"globalStyle": {
