@@ -90,6 +90,16 @@
 					size: '22',
 					type: 'personadd'
 				},
+				list: {
+					color: '#ff557f',
+					size: '22',
+					type: 'list~'
+				},
+				gift: {
+					color: '#ff557f',
+					size: '22',
+					type: 'gift'
+				},
 				nickName: '阿飘',
 				avatarUrl: 'https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/chatting.png' // 初始头像的 URL
 			}
