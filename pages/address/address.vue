@@ -91,10 +91,11 @@
 	}
 	
 	.divider {
+		display: flex;
 		width: 100%;
 		height: 1px;
 		background-color: #37CBE8;
-		margin-top: 410px;
+		margin-top: 1100rpx;
 	}
 	
 	.add-address {
