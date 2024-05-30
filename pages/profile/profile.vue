@@ -48,7 +48,6 @@
 </template>
 
 <script>
-	import request from '@/utils/request';
 	import fuiAvatar from "@/components/firstui/fui-avatar/fui-avatar.vue"
 	import fuiIcon from "@/components/firstui/fui-icon/fui-icon.vue"
 	import fuiText from "@/components/firstui/fui-text/fui-text.vue"

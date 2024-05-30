@@ -13,22 +13,26 @@
 		</view>
 		<view style="display: flex;" class="box">
 			<view class="category-item">
-				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%BF%AB%E9%80%92.png" style="width: 50%;" mode="widthFix"></image>
+				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%BF%AB%E9%80%92.png"
+					style="width: 50%;" mode="widthFix"></image>
 				<view>代取快递</view>
 			</view>
 
 			<view class="category-item">
-				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%8F%96%E9%A4%90.png" style="width: 50%;" mode="widthFix"></image>
+				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%8F%96%E9%A4%90.png"
+					style="width: 50%;" mode="widthFix"></image>
 				<view>代取餐品</view>
 			</view>
 
 			<view class="category-item">
-				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E9%9B%B6%E9%A3%9F.png" style="width: 50%;" mode="widthFix"></image>
+				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E9%9B%B6%E9%A3%9F.png"
+					style="width: 50%;" mode="widthFix"></image>
 				<view>代买零食</view>
 			</view>
 
 			<view class="category-item">
-				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E8%8A%B1.png" style="width: 50%;" mode="widthFix"></image>
+				<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E8%8A%B1.png" style="width: 50%;"
+					mode="widthFix"></image>
 				<view>代买鲜花</view>
 			</view>
 		</view>
@@ -36,14 +40,14 @@
 </template>
 
 <script>
-import request from '../../utils/request'
+	import request from '../../utils/request'
 	export default {
 		data() {
 			return {
 				imgs: [
 					'https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/banner1.png',
 					'https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/banner2.png',
-					
+
 				],
 				interval: 3000,
 				duration: 500,
@@ -66,22 +70,34 @@ import request from '../../utils/request'
 						uni.login({
 							"provider": "weixin",
 							"onlyAuthorize": true, // 微信登录仅请求授权认证
-							success: function(event){
-								const {code} = event
-								//客户端成功获取授权临时票据（code）,向业务服务器发起登录请求。
+							success: function(event) {
+								const {
+									code
+								} = event
+								//客户端成功获取授权临时票据（code）, 向业务服务器发起登录请求。
 								console.log("code : " + code)
 								const userLoginDTO = {
-								    code : code	
+									code: code
 								};
-								request.post("/user/user/login",userLoginDTO).then(res => {
+								request.post("/user/user/login", userLoginDTO).then(res => {
 									// 请求成功，处理响应
 									console.log(res.data);
+									// 响应数据中包含令牌的字段名是 token
+									const token = res.data.token;
+
+									if (token) {
+										// 将令牌存储到本地存储中
+										uni.setStorageSync('xm-user', {
+											token
+										});
+									}
+									
 								});
 							},
-							fail: function (err) {
-						        // 登录授权失败
-						        // err.code是错误码
-						    }
+							fail: function(err) {
+								// 登录授权失败
+								// err.code是错误码
+							}
 						})
 					}
 				}

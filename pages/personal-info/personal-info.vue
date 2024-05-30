@@ -1,16 +1,7 @@
 <template>
 	<view style="margin: 20rpx;">
 		<view class="information">
-			<!-- 			<fui-list>
-				<fui-list-cell>
-					<fui-icon name="my" :size="40"></fui-icon>
-					<fui-text text="头像" style="margin-right: 450rpx;"></fui-text>
-				</fui-list-cell>
-				<fui-list-cell>
-					<fui-icon name="bankcard" :size="40"></fui-icon>
-					<fui-text text="手机" style="margin-right: 450rpx;"></fui-text>
-				</fui-list-cell>
-			</fui-list> -->
+
 			<uni-list>
 				<view class="container">
 					<view class="item">
@@ -18,7 +9,6 @@
 					</view>
 					<view class="avatar">
 						<button class="avatar-button" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
-							<!-- <image class="avatar" :src="avatarUrl" ></image> -->
 							<u-avatar :src="avatarUrl" size="40" @click="changeAvatar"></u-avatar>
 						</button>
 					</view>
@@ -61,6 +51,7 @@
 	import fuiList from "@/components/firstui/fui-list/fui-list.vue"
 	import fuiListCell from "@/components/firstui/fui-list-cell/fui-list-cell.vue"
 	import fuiText from "@/components/firstui/fui-text/fui-text.vue"
+	import request from "../../utils/request"
 
 	export default {
 		components: {
@@ -126,8 +117,12 @@
 				const {
 					avatarUrl
 				} = e.detail;
-				// TODO : 把新上传的头像发送到后端，把用户数据更新 。名字也是
 				this.avatarUrl = avatarUrl;
+				// 把新上传的头像发送到后端，把用户的url和name更新
+				const userUpdateDTO = {url : this.avatarUrl , name : this.nickName}
+				request.post('/user/user/update', userUpdateDTO).then(res => {
+					console.log('请求成功');
+				});
 			}
 		}
 	}
