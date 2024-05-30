@@ -126,6 +126,7 @@
 				const {
 					avatarUrl
 				} = e.detail;
+				// TODO : 把新上传的头像发送到后端，把用户数据更新 。名字也是
 				this.avatarUrl = avatarUrl;
 			}
 		}

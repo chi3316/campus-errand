@@ -2,8 +2,8 @@
 		<view style="margin: 20rpx">
 			<view class="box" style=" justify-content: space-between; margin-bottom: 20rpx;">
 				<view class="user-info-box" style="margin: 20rpx" @click="personalInfo">
-					<fui-avatar size="large" src="#"></fui-avatar>
-					<fui-text :text="username" :size="40" class="username-text"></fui-text>
+					<fui-avatar size="large" :src="avatarUrl"></fui-avatar>
+					<fui-text :text="nickName" :size="40" class="username-text"></fui-text>
 				</view>
 			</view>
 			
@@ -90,7 +90,8 @@
 					size: '22',
 					type: 'personadd'
 				},
-				username: '未登录',
+				nickName: '阿飘',
+				avatarUrl: 'https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/chatting.png' // 初始头像的 URL
 			}
 		},
 
