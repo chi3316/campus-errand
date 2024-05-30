@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "订 单",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "uni-segmented-control": "/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control",
-    "uni-card": "/uni_modules/uni-card/components/uni-card/uni-card"
-  }
-}

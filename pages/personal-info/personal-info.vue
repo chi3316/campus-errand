@@ -17,7 +17,10 @@
 						<uni-list-item :show-extra-icon="true" :extra-icon="persion" title="头像" />
 					</view>
 					<view class="avatar">
-						<u-avatar :src="src" size="40" @click="changeAvatar"></u-avatar>
+						<button class="avatar-button" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
+							<!-- <image class="avatar" :src="avatarUrl" ></image> -->
+							<u-avatar :src="avatarUrl" size="40" @click="changeAvatar"></u-avatar>
+						</button>
 					</view>
 				</view>
 
@@ -103,9 +106,9 @@
 					size: '24',
 					type: 'link'
 				},
-				nickName: "跑跑乐用户",
+				nickName: "华园代跑用户",
 				phoneNumber: "178****7975",
-				src: 'https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/chatting.png' // 初始头像的 URL
+				avatarUrl: 'https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/chatting.png' // 初始头像的 URL
 			}
 		},
 		methods: {
@@ -119,6 +122,12 @@
 					console.log('请求成功，数据:', res.data);
 				})
 			},
+			onChooseAvatar(e) {
+				const {
+					avatarUrl
+				} = e.detail;
+				this.avatarUrl = avatarUrl;
+			}
 		}
 	}
 </script>
@@ -188,5 +197,21 @@
 		/* 给输入框一些左边距 */
 		font-size: 16px;
 		/* 确保输入框字体大小与其他文本一致 */
+	}
+
+	.avatar-button {
+		border-radius: 50%;
+		border: none;
+		/* 去除边框 */
+		background: none;
+		/* 去除背景 */
+		padding: 0;
+		/* 去除内边距 */
+		outline: none;
+		/* 去除点击时的轮廓 */
+		box-shadow: none;
+		/* 去除阴影 */
+		cursor: pointer;
+		/* 鼠标悬停时显示指针 */
 	}
 </style>
