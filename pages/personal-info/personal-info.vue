@@ -4,93 +4,40 @@
       <uni-list>
         <view class="container">
           <view class="item">
-            <uni-list-item
-              :show-extra-icon="true"
-              :extra-icon="persion"
-              title="头像"
-            />
+            <uni-list-item :show-extra-icon="true" :extra-icon="persion" title="头像" />
           </view>
           <view class="avatar">
-            <button
-              class="avatar-button"
-              open-type="chooseAvatar"
-              @chooseavatar="onChooseAvatar"
-            >
-              <u-avatar
-                :src="user.avatarUrl"
-                size="40"
-                @click="changeAvatar"
-              ></u-avatar>
+            <button class="avatar-button" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
+              <u-avatar :src="user.avatarUrl" size="40" @click="changeAvatar"></u-avatar>
             </button>
           </view>
         </view>
 
         <view class="container">
           <view class="item">
-            <uni-list-item
-              :show-extra-icon="true"
-              :extra-icon="name"
-              title="名字"
-            />
+            <uni-list-item :show-extra-icon="true" :extra-icon="name" title="名字" />
           </view>
           <view class="input-container">
-            <input
-              type="nickname"
-              v-model="user.nickName"
-              placeholder="请输入昵称"
-              class="nickname-input"
-            />
+            <input type="nickname" v-model="user.nickName" placeholder="请输入昵称" class="nickname-input" />
           </view>
         </view>
 
-        <uni-list-item
-          :show-extra-icon="true"
-          :extra-icon="phone"
-          title="电话"
-          :rightText="user.phoneNumber"
-        />
+        <uni-list-item :show-extra-icon="true" :extra-icon="phone" title="电话" :rightText="user.phoneNumber" />
       </uni-list>
     </view>
 
     <view class="function">
       <uni-list>
-        <uni-list-item
-          :show-extra-icon="true"
-          :extra-icon="address"
-          title="我的地址"
-          clickable
-          showArrow
-          @click="toAddress"
-        />
-        <uni-list-item
-          :show-extra-icon="true"
-          :extra-icon="income"
-          title="收支明细"
-          clickable
-          showArrow
-          to="./chats"
-          @click="onClick"
-        />
+        <uni-list-item :show-extra-icon="true" :extra-icon="address" title="我的地址" clickable showArrow
+          @click="toAddress" />
+        <uni-list-item :show-extra-icon="true" :extra-icon="income" title="收支明细" clickable showArrow to="./chats"
+          @click="onClick" />
       </uni-list>
       <uni-list>
-        <uni-list-item
-          :show-extra-icon="true"
-          :extra-icon="apply"
-          title="申请商户"
-          clickable
-          showArrow
-          to="./chat"
-          @click="onClick"
-        />
-        <uni-list-item
-          :show-extra-icon="true"
-          :extra-icon="campus"
-          title="更换校区"
-          clickable
-          showArrow
-          to="./chats"
-          @click="onClick"
-        />
+        <uni-list-item :show-extra-icon="true" :extra-icon="apply" title="申请商户" clickable showArrow to="./chat"
+          @click="onClick" />
+        <uni-list-item :show-extra-icon="true" :extra-icon="campus" title="更换校区" clickable showArrow to="./chats"
+          @click="onClick" />
       </uni-list>
     </view>
   </view>

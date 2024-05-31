@@ -1,39 +1,19 @@
 <template>
   <view style="margin: 20rpx">
-    <view
-      class="box"
-      style="justify-content: space-between; margin-bottom: 20rpx"
-    >
+    <view class="box" style="justify-content: space-between; margin-bottom: 20rpx">
       <view class="user-info-box" style="margin: 20rpx" @click="personalInfo">
         <fui-avatar size="large" :src="user.avatarUrl"></fui-avatar>
-        <fui-text
-          :text="user.nickName"
-          :size="40"
-          class="username-text"
-        ></fui-text>
+        <fui-text :text="user.nickName" :size="40" class="username-text"></fui-text>
       </view>
     </view>
 
     <view style="margin-bottom: 20rpx">
       <view class="box">
         <uni-list>
-          <uni-list-item
-            :show-extra-icon="true"
-            :extra-icon="apply"
-            title="申请接单"
-            clickable
-            showArrow
-            @click="onClick"
-          />
-          <uni-list-item
-            :show-extra-icon="true"
-            :extra-icon="list"
-            title="接单排行"
-            clickable
-            showArrow
-            :to="`./chat`"
-            @click="onClick"
-          />
+          <uni-list-item :show-extra-icon="true" :extra-icon="apply" title="申请接单" clickable showArrow
+            @click="onClick" />
+          <uni-list-item :show-extra-icon="true" :extra-icon="list" title="接单排行" clickable showArrow :to="`./chat`"
+            @click="onClick" />
         </uni-list>
       </view>
     </view>
@@ -42,23 +22,10 @@
     <view style="margin-bottom: 20rpx">
       <view class="box">
         <uni-list>
-          <uni-list-item
-            :show-extra-icon="true"
-            :extra-icon="gift"
-            title="我的优惠卷"
-            clickable
-            showArrow
-            @click="onClick"
-          />
-          <uni-list-item
-            :show-extra-icon="true"
-            :extra-icon="invite"
-            title="邀请新人"
-            clickable
-            showArrow
-            :to="`./chat`"
-            @click="onClick"
-          />
+          <uni-list-item :show-extra-icon="true" :extra-icon="gift" title="我的优惠卷" clickable showArrow
+            @click="onClick" />
+          <uni-list-item :show-extra-icon="true" :extra-icon="invite" title="邀请新人" clickable showArrow :to="`./chat`"
+            @click="onClick" />
         </uni-list>
       </view>
     </view>
@@ -66,42 +33,14 @@
     <view style="margin-top: 20rpx">
       <view class="box">
         <uni-list>
-          <uni-list-item
-            :show-extra-icon="true"
-            :extra-icon="customerService"
-            title="校区客服"
-            clickable
-            showArrow
-            to="./chat"
-            @click="campusService"
-          />
-          <uni-list-item
-            :show-extra-icon="true"
-            :extra-icon="feedback"
-            title="反馈建议"
-            clickable
-            showArrow
-            to="./chats"
-            @click="feedBack"
-          />
-          <uni-list-item
-            :show-extra-icon="true"
-            :extra-icon="cooperate"
-            title="合作投诉"
-            clickable
-            showArrow
-            to="./chats"
-            @click="cooperativeComplaint"
-          />
-          <uni-list-item
-            :show-extra-icon="true"
-            :extra-icon="about"
-            title="关于我们"
-            clickable
-            showArrow
-            to="./chats"
-            @click="aboutUs"
-          />
+          <uni-list-item :show-extra-icon="true" :extra-icon="customerService" title="校区客服" clickable showArrow
+            to="./chat" @click="campusService" />
+          <uni-list-item :show-extra-icon="true" :extra-icon="feedback" title="反馈建议" clickable showArrow to="./chats"
+            @click="feedBack" />
+          <uni-list-item :show-extra-icon="true" :extra-icon="cooperate" title="合作投诉" clickable showArrow to="./chats"
+            @click="cooperativeComplaint" />
+          <uni-list-item :show-extra-icon="true" :extra-icon="about" title="关于我们" clickable showArrow to="./chats"
+            @click="aboutUs" />
         </uni-list>
       </view>
     </view>

@@ -1,64 +1,38 @@
 <template>
   <view style="padding: 20rpx">
     <view style="margin-bottom: 20rpx">
-      <swiper
-        circular
-        indicator-dots
-        autoplay
-        :interval="interval"
-        :duration="duration"
-        style="height: 350rpx"
-        indicator-color="rgba(255,255,255,0.6)"
-        indicator-active-color="#3CB371"
-      >
+      <swiper circular indicator-dots autoplay :interval="interval" :duration="duration" style="height: 350rpx"
+        indicator-color="rgba(255,255,255,0.6)" indicator-active-color="#3CB371">
         <swiper-item v-for="item in imgs" :key="item">
           <image :src="item" alt="" style="width: 100%; height: 350rpx"></image>
         </swiper-item>
       </swiper>
     </view>
     <view style="margin-bottom: 20rpx">
-      <uni-notice-bar
-        v-if="content"
-        show-icon
-        speed="50"
-        scrollable
-        :text="content"
-      />
+      <uni-notice-bar v-if="content" show-icon speed="50" scrollable :text="content" />
     </view>
     <view style="display: flex" class="box">
       <view class="category-item">
-        <image
-          src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%BF%AB%E9%80%92.png"
-          style="width: 50%"
-          mode="widthFix"
-        ></image>
+        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%BF%AB%E9%80%92.png" style="width: 50%"
+          mode="widthFix"></image>
         <view>代取快递</view>
       </view>
 
       <view class="category-item">
-        <image
-          src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%8F%96%E9%A4%90.png"
-          style="width: 50%"
-          mode="widthFix"
-        ></image>
+        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%8F%96%E9%A4%90.png" style="width: 50%"
+          mode="widthFix"></image>
         <view>代取餐品</view>
       </view>
 
       <view class="category-item">
-        <image
-          src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E9%9B%B6%E9%A3%9F.png"
-          style="width: 50%"
-          mode="widthFix"
-        ></image>
+        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E9%9B%B6%E9%A3%9F.png" style="width: 50%"
+          mode="widthFix"></image>
         <view>代买零食</view>
       </view>
 
       <view class="category-item">
-        <image
-          src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E8%8A%B1.png"
-          style="width: 50%"
-          mode="widthFix"
-        ></image>
+        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E8%8A%B1.png" style="width: 50%"
+          mode="widthFix"></image>
         <view>代买鲜花</view>
       </view>
     </view>
