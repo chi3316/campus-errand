@@ -93,21 +93,21 @@ export default {
       return currentTime > expiration;
     },
     load() {
-      // this.$request.get('/notice/selectAll').then(res => {
-      // 	this.noticeList = res.data || []
-      // 	let i = 0
-      // 	this.content = this.noticeList.length ? this.noticeList[i].content : ''
-      // 	//切换公告内容
-      // 	if (this.noticeList.length > 1) {
-      // 		this.inter = setInterval(() => {
-      // 			i++
-      // 			if (i === this.noticeList.length) {
-      // 				i = 0
-      // 			}
-      // 			this.content = this.noticeList[i].content
-      // 		}, 5000)
-      // 	}
-      // })
+      this.$request.get('/user/notice/selectAll').then(res => {
+        this.noticeList = res.data.notices || []
+        let i = 0
+        this.content = this.noticeList.length ? this.noticeList[i].content : ''
+        //切换公告内容
+        if (this.noticeList.length > 1) {
+          this.inter = setInterval(() => {
+            i++
+            if (i === this.noticeList.length) {
+              i = 0
+            }
+            this.content = this.noticeList[i].content
+          }, 6500)
+        }
+      })
     },
     performLogin() {
       uni.login({
