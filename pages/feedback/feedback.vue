@@ -4,12 +4,12 @@
 			<view class="text-container">
 				<view class="text">建议意见</view>
 				<view class="input-wrapper">
-					<input class="input" placeholder="请详细描述您的建议或意见" />
+					<input class="input" v-model="text" placeholder="请详细描述您的建议或意见" />
 				</view>
 			</view>
 
 			<view class="image-container">
-				<uni-file-picker limit="4" title="上传图片"></uni-file-picker>
+				<uni-file-picker limit="4" title="上传图片" :auto-upload="false" @select="upload"></uni-file-picker>
 			</view>
 
 			<!-- 提交按钮 -->
@@ -28,15 +28,34 @@
 export default {
 	data() {
 		return {
-			url: '',
+			imageurls: [],
+			advice: '',
 		}
 	},
 	methods: {
 		submit() {
-
+			const feedbackDTO = { urls: this.imageurls, advice: this.advice }
+			this.$request.post("/user/user/addAdvice", feedbackDTO).then((res) => {
+				console(res.data)
+			})
 		},
-		uploadImage() {
-			this.$request.post("/user/common/upload")
+		addToImageUrls(e) {
+			this.imageurls.push(e)
+		},
+		upload(e) {
+			const tempFilePaths = e.tempFilePaths;// e是获取的图片源
+			// 上传图片到后端接口，返回url，保存到数组里，最后点击按钮的时候一起提交
+			uni.uploadFile({
+				url: 'http://localhost:8081/user/common/upload',
+				header: { token: uni.getStorageSync("xm-user").token },
+				filePath: tempFilePaths[0],
+				name: 'file',
+				success: res => {
+					const result = JSON.parse(res.data);
+					this.addToImageUrls(result.data);
+					console.log(this.imageurls)
+				}
+			})
 		}
 	}
 }
@@ -57,6 +76,7 @@ export default {
 
 .button-container {
 	margin-top: 20rpx;
+	justify-content: center;
 }
 
 .text {
@@ -106,5 +126,11 @@ export default {
 	cursor: pointer;
 	/* 鼠标样式为手型 */
 	height: 100rpx;
+	display: flex;
+	/* 使子元素的布局变为 flex 布局 */
+	justify-content: center;
+	/* 使按钮内文字水平居中 */
+	align-items: center;
+	/* 使按钮内文字垂直居中 */
 }
 </style>
