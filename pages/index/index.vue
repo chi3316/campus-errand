@@ -58,48 +58,40 @@ export default {
 
   onShow() {
     this.load();
-    //进入小程序需要用户授权微信登录
+    // 检查本地存储中是否有用户信息
+    const userData = uni.getStorageSync("xm-user");
+    if (userData) {
+      const currentTime = new Date().getTime();
+      const tokenExpiration = userData.expiration;
+      if (currentTime < tokenExpiration) {
+        // Token 有效，不需要重新登录
+        console.log("Token 有效:", userData);
+        return;
+      }
+    }
+
+    // Token 无效或不存在，提示用户登录
     uni.showModal({
       title: "温馨提示",
       content: "授权微信登录之后才能使用小程序哦",
       showCancel: false,
       success: (res) => {
         if (res.confirm) {
-          // 用户点击确认后的操作
-          uni.login({
-            provider: "weixin",
-            onlyAuthorize: true, // 微信登录仅请求授权认证
-            success: function (event) {
-              const { code } = event;
-              //客户端成功获取授权临时票据（code）,向业务服务器发起登录请求。
-              console.log("code : " + code);
-              const userLoginDTO = {
-                code: code,
-              };
-              request.post("/user/user/login", userLoginDTO).then((res) => {
-                // 响应数据中包含令牌的字段名是 token
-                // 登录成功应该把用户信息保存下来，给其他要渲染的地方使用
-                const userData = res.data;
-                if (userData) {
-                  uni.setStorageSync("xm-user", userData);
-                  console.log(uni.getStorageSync("xm-user"));
-                }
-              });
-            },
-            fail: function (err) {
-              // 登录授权失败
-              console.log("登录失败" + err.code);
-            },
-          });
+          this.performLogin();
         }
       },
     });
+
   },
   onHide() {
     clearInterval(this.inter);
     this.inter = null;
   },
   methods: {
+    isTokenExpired(expiration) {
+      const currentTime = new Date().getTime();
+      return currentTime > expiration;
+    },
     load() {
       // this.$request.get('/notice/selectAll').then(res => {
       // 	this.noticeList = res.data || []
@@ -117,7 +109,27 @@ export default {
       // 	}
       // })
     },
-  },
+    performLogin() {
+      uni.login({
+        provider: "weixin",
+        onlyAuthorize: true,
+        success: function (event) {
+          const { code } = event;
+          const userLoginDTO = { code };
+          request.post("/user/user/login", userLoginDTO).then((res) => {
+            const userData = res.data;
+            if (userData) {
+              uni.setStorageSync("xm-user", userData);
+              console.log("用户已登录:", userData);
+            }
+          });
+        },
+        fail: function (err) {
+          console.log("登录失败" + err.code);
+        },
+      });
+    },
+  }
 };
 </script>
 
