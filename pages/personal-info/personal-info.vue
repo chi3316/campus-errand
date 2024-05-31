@@ -18,7 +18,8 @@
             <uni-list-item :show-extra-icon="true" :extra-icon="name" title="名字" />
           </view>
           <view class="input-container">
-            <input type="nickname" v-model="user.nickName" placeholder="请输入昵称" class="nickname-input" />
+            <input type="nickname" v-model="user.nickName" placeholder="请输入昵称" class="nickname-input"
+              @change="updateNickname" />
           </view>
         </view>
 
@@ -116,6 +117,22 @@ export default {
     }
   },
   methods: {
+    updateNickname(event) {
+      const newNickName = event.target.value;
+      const userUpdateDTO = { avatar: null, name: newNickName };
+      request
+        .post(
+          "/user/user/update",
+          userUpdateDTO,
+          { token: uni.getStorageSync("xm-user").token }
+        );
+      // 更新本地存储中的昵称信息
+      let storedUser = uni.getStorageSync("xm-user");
+      if (storedUser) {
+        storedUser.name = newNickName;
+        uni.setStorageSync("xm-user", storedUser);
+      }
+    },
     toAddress() {
       uni.navigateTo({
         url: "/pages/address/address", // 跳转页面
@@ -134,6 +151,7 @@ export default {
         success: function (sres) {
           //上传图片
           wx.uploadFile({
+            // TODO : 这个url不能写死
             url: "http://localhost:8081/user/common/upload",
             header: { token: uni.getStorageSync("xm-user")?.token },
             filePath: sres.path,
