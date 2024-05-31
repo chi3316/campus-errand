@@ -18,7 +18,7 @@
             <uni-list-item :show-extra-icon="true" :extra-icon="name" title="名字" />
           </view>
           <view class="input-container">
-            <input type="nickname" v-model="user.nickName" placeholder="请输入昵称" class="nickname-input"
+            <input type="nickname" v-model="user.nickName" placeholder="" class="nickname-input"
               @change="updateNickname" />
           </view>
         </view>
