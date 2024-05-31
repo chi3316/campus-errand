@@ -97,6 +97,7 @@
 </template>
 
 <script>
+import request from "../../utils/request";
 import fuiIcon from "@/components/firstui/fui-icon/fui-icon.vue";
 import fuiList from "@/components/firstui/fui-list/fui-list.vue";
 import fuiListCell from "@/components/firstui/fui-list-cell/fui-list-cell.vue";
@@ -179,9 +180,8 @@ export default {
     },
     onChooseAvatar(e) {
       const { avatarUrl } = e.detail;
-      // 把新上传的头像发送到后端，把用户数据更新 。名字也是
+      // 把新上传的头像发送到后端
       this.user.avatarUrl = avatarUrl;
-
       wx.getImageInfo({
         src: this.user.avatarUrl,
         success: function (sres) {
@@ -198,8 +198,18 @@ export default {
                 // 获取图片URL
                 const imageUrl = result.data;
                 console.log("Uploaded image URL:", imageUrl);
-                // 这个新的url作为用户的信息
-                this.user.avatarUrl = imageUrl;
+                // 更新数据库中用户信息
+                const userUpdateDTO = { avatar: imageUrl, name: this.nickName };
+                request.post("/user/user/update", userUpdateDTO, {
+                  token: uni.getStorageSync("xm-user")?.token,
+                });
+                // 更新Storage中的用户信息
+                let storedUser = uni.getStorageSync("xm-user");
+                if (storedUser) {
+                  // 更新本地存储中的头像信息
+                  storedUser.avatar = imageUrl;
+                  uni.setStorageSync("xm-user", storedUser);
+                }
               } else {
                 console.error("Upload failed:", result.msg);
               }

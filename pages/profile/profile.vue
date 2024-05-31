@@ -168,10 +168,9 @@ export default {
       },
     };
   },
-  created() {
+  onShow() {
     // 获取本地存储中的用户信息
     const storedUser = uni.getStorageSync("xm-user");
-
     if (storedUser) {
       // 如果有存储的用户信息，则更新 user 对象
       this.user = {
