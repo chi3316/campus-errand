@@ -29,14 +29,34 @@ export default {
 	data() {
 		return {
 			imageurls: [],
-			advice: '',
+			text: '',
 		}
 	},
 	methods: {
 		submit() {
-			const feedbackDTO = { urls: this.imageurls, advice: this.advice }
+			const feedbackDTO = { urls: this.imageurls, text: this.text }
+			console.log(feedbackDTO)
 			this.$request.post("/user/user/addAdvice", feedbackDTO).then((res) => {
-				console(res.data)
+				console.log(res.data)
+			}).then((res) => {
+				console.log("发送成功！")
+				// 提交成功之后，返回到上一页，并弹窗提示发送成功
+				uni.switchTab(
+					{
+						url: '/pages/profile/profile',
+						success: () => {
+							console.log(1);
+						},
+						fail: (res) => {
+							console.log('navigate failed', res);
+						}
+					}
+				)
+				// 弹窗
+				uni.showToast({
+					title: '已收到您的反馈',
+					duration: 2000
+				});
 			})
 		},
 		addToImageUrls(e) {
