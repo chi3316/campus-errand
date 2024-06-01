@@ -55,6 +55,11 @@ export default {
 	},
 	methods: {
 		confirm() {
+			const eventChannel = this.getOpenerEventChannel();
+			eventChannel.emit('acceptDataFromOpenedPage', true);
+			uni.navigateBack({
+				delta: 1
+			});
 			// 应该加到后端数据库表示你确认过，但这里就省掉了
 			console.log("用户已确认协议")
 		}

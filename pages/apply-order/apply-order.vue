@@ -40,7 +40,7 @@
 				<view class="input-container">
 					<label @click="toProtocol">
 						<text style="margin-right: 10rpx; color: #00aaff">勾选表示同意协议</text>
-						<checkbox value="cb" checked="true" />
+						<checkbox :checked="confirmed" @change="handleCheckboxChange" />
 					</label>
 				</view>
 			</view>
@@ -101,7 +101,8 @@ export default {
 				studentCard: '',
 				studentId: ''
 			},
-		}; 
+			confirmed: false
+		};
 	},
 	methods: {
 		copyWeChat() {
@@ -115,11 +116,35 @@ export default {
 			});
 			console.log("已复制管理员微信")
 		},
+		handleCheckboxChange(event) {
+			this.confirmed = event.detail.value.length > 0;
+		},
 		toProtocol() {
-			console.log("请遵守协议")
+			uni.navigateTo({
+				url: "../confirm-protocol/confirm-protocol",
+				events: {
+					acceptDataFromOpenedPage: (data) => {
+						if (data) {
+							this.confirmed = true; // 使用箭头函数来正确绑定 this
+						}
+					}
+				}
+			})
+		},
+		checkValue() {
+			const { name, studentCard, studentId } = this.applyOrderTakerDTO;
+			return name && studentCard && studentId;
 		},
 		submit() {
 			console.log(this.applyOrderTakerDTO)
+			if (!this.checkValue()) {
+				uni.showToast({
+					title: '提交失败！请填写完整信息',
+					icon: 'none',
+					duration: 2000
+				});
+				return;
+			}
 			// 发送请求
 			this.$request.post("/user/user/applyOrderTaker", this.applyOrderTakerDTO).then((res) => {
 				// 跳转页面
