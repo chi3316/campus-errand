@@ -1,5 +1,5 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -91,12 +91,19 @@
 			"style": {
 				"navigationBarTitleText": "反馈建议"
 			}
+		},
+		{
+			"path": "pages/apply-order/apply-order",
+			"style": {
+				"navigationBarTitleText": "申请接单",
+				"enablePullDownRefresh": false
+			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "校园跑腿",
-		"navigationBarBackgroundColor": "#37cbe8", //导航栏背景色
+		"navigationBarBackgroundColor": "#37cbe8",
 		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {

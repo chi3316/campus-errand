@@ -1,29 +1,85 @@
 <template>
-  <view class="container">
-    <view class="text-container">
-      <view class="text">建议意见</view>
-      <view class="input-wrapper">
-        <input class="input" placeholder="请详细描述您的建议或意见" />
+  <view style="margin: 20rpx">
+    <uni-list>
+      <view class="container">
+        <view class="item">
+          <uni-list-item :show-extra-icon="true" :extra-icon="name" title="名字" />
+        </view>
+        <view class="input-container">
+          <input v-model="user.nickName" placeholder="请输入姓名" class="nickname-input" @change="updateNickname" />
+        </view>
       </view>
-    </view>
-    <view class="button-container">
-      <button class="submit-button">提交</button>
-    </view>
+
+      <view class="container">
+        <view class="item">
+          <uni-list-item :show-extra-icon="true" :extra-icon="name" title="学号" />
+        </view>
+        <view class="input-container">
+          <input v-model="user.nickName" placeholder="请输入学号" class="nickname-input" @change="updateNickname" />
+        </view>
+      </view>
+
+      <view class="file-container">
+        <view class="item">
+          <uni-list-item :show-extra-icon="true" :extra-icon="name" title="学生证" />
+        </view>
+        <view style="margin-left: 120rpx;">
+          <u-upload :fileList="fileList6" @afterRead="afterRead" @delete="deletePic" name="6" multiple :maxCount="1"
+            width="250" height="150">
+            <image src="https://cdn.uviewui.com/uview/demo/upload/positive.png" mode="widthFix"
+              style="width: 250px;height: 150px;"></image>
+          </u-upload>
+        </view>
+      </view>
+
+
+      <view class="container">
+        <view class="item">
+          <uni-list-item :show-extra-icon="true" :extra-icon="name" title="电子协议" />
+        </view>
+        <view class="input-container">
+          <label>
+            <text style="margin-right: 10rpx;">勾选表示同意协议</text>
+            <checkbox value="cb" checked="true" />
+          </label>
+        </view>
+      </view>
+
+      <view class="container">
+        <view class="item">
+          <uni-list-item :show-extra-icon="true" :extra-icon="name" title="加急审核" />
+        </view>
+        <view class="input-container">
+          <a>联系校区管理员</a>
+        </view>
+      </view>
+
+      <view class="button-container">
+        <fui-button radius="96rpx" @click="submit">提交申请</fui-button>
+      </view>
+    </uni-list>
   </view>
 </template>
 
 <script>
+import fuiButton from "@/components/firstui/fui-button/fui-button.vue"
 export default {
+  components: {
+    fuiButton
+  },
   data() {
     return {
-      avatarUrl: 'https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/chatting.png' // 初始头像的 URL
+      name: {
+        color: "#00aa00",
+        size: "24",
+        type: "link",
+      },
+      user: {
+        nickName: ''
+      },
     };
   },
   methods: {
-    onChooseAvatar(e) {
-      const { avatarUrl } = e.detail;
-      this.avatarUrl = avatarUrl;
-    }
   }
 };
 </script>
@@ -32,60 +88,41 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  flex-direction: column;
-  /* 垂直排列子元素 */
   align-items: center;
-  /* 子元素水平居中对齐 */
-}
-
-.text-container {
-  display: flex;
-  align-items: center;
-  /* 子元素垂直居中对齐 */
-}
-
-.text {
-  margin-right: 10px;
-  /* 文本右侧间距 */
-  line-height: 1.5;
-  /* 设置文本行高 */
-}
-
-.input-wrapper {
-  flex: 1;
-  /* 输入框占据剩余空间 */
-}
-
-.input {
+  /* 垂直居中对齐 */
+  justify-content: space-between;
+  /* 使内容在两端对齐 */
   width: 100%;
-  /* 输入框宽度填满容器 */
-  padding: 5px;
-  /* 输入框内边距 */
-  box-sizing: border-box;
-  /* 设置盒子模型为边框盒 */
-  border: none;
-  /* 移除边框 */
-  line-height: 1.5;
-  /* 设置输入框行高 */
+  /* 确保容器占据可用宽度 */
 }
 
-.button-container {
-  margin-top: 20px;
-  /* 提交按钮与上方盒子间距 */
+.item {
+  flex-grow: 1;
+  /* 使列表项占据尽可能多的空间 */
 }
 
-.submit-button {
-  padding: 10px 20px;
-  /* 按钮内边距 */
-  background-color: #007bff;
-  /* 按钮背景色 */
-  color: #fff;
-  /* 按钮文字颜色 */
-  border: none;
-  /* 移除按钮边框 */
-  border-radius: 5px;
-  /* 按钮圆角 */
-  cursor: pointer;
-  /* 鼠标样式为手型 */
+.avatar {
+  margin-left: 10px;
+  /* 给头像一些左边距，以防与列表项重叠 */
+}
+
+.input-container {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  /* 给输入框一些左边距，以防与列表项重叠 */
+
+}
+
+.file-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20rpx;
+  justify-content: center;
+  /* 水平居中 */
+}
+
+.nickname-input {
+  text-align: right;
+  /* 使输入框中的文字左对齐 */
 }
 </style>
