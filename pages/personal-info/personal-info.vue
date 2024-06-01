@@ -22,8 +22,15 @@
               @change="updateNickname" />
           </view>
         </view>
-
-        <uni-list-item :show-extra-icon="true" :extra-icon="phone" title="电话" :rightText="user.phoneNumber" />
+        <view class="container">
+          <view class="item">
+            <uni-list-item :show-extra-icon="true" :extra-icon="phone" title="电话" />
+          </view>
+          <view class="input-container">
+            <input v-model="user.phoneNumber" placeholder="请添加号码" class="nickname-input" @change="updatePhone" />
+          </view>
+        </view>
+        <!-- <uni-list-item :show-extra-icon="true" :extra-icon="phone" title="电话" :rightText="user.phoneNumber" /> -->
       </uni-list>
     </view>
 
@@ -97,7 +104,7 @@ export default {
       },
       user: {
         nickName: "华园代跑用户",
-        phoneNumber: "178****7975",
+        phoneNumber: "",
         avatarUrl:
           "https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/chatting.png", // 初始头像的 URL
       },
@@ -117,9 +124,30 @@ export default {
     }
   },
   methods: {
+    updatePhone(event) {
+      // 这里前面接口没考虑好，这些数据更新可以写到一个函数的
+      const phone = event.target.value;
+      if (phone.length !== 11) {
+        uni.showToast({
+          title: '提交失败！请填写正确手机号码',
+          icon: 'none',
+          duration: 2000
+        });
+        return
+      }
+      const userUpdateDTO = { avatar: null, name: null, phone: phone };
+      this.$request.post("/user/user/update", userUpdateDTO);
+      // 更新本地存储中的号码信息
+      let storedUser = uni.getStorageSync("xm-user");
+      if (storedUser) {
+        storedUser.phone = phone;
+        uni.setStorageSync("xm-user", storedUser);
+      }
+      console.log(this.user.phoneNumber)
+    },
     updateNickname(event) {
       const newNickName = event.target.value;
-      const userUpdateDTO = { avatar: null, name: newNickName };
+      const userUpdateDTO = { avatar: null, name: newNickName, phone: null };
       request
         .post(
           "/user/user/update",
