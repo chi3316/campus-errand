@@ -49,13 +49,6 @@
 			}
 		},
 		{
-			"path": "pages/express-order/express-order",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
 			"path": "pages/address/address",
 			"style": {
 				"navigationBarTitleText": "我的地址",
@@ -104,6 +97,14 @@
 			"style": {
 				"navigationBarTitleText": "确认电子协议",
 				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path" : "pages/courier-pickup/courier-pickup",
+			"style" : 
+			{
+				"navigationBarTitleText" : "代取快递",
+				"enablePullDownRefresh" : false
 			}
 		}
 	],
