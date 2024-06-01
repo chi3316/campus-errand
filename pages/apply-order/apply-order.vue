@@ -101,10 +101,18 @@ export default {
 				studentCard: '',
 				studentId: ''
 			},
-		};
+		}; 
 	},
 	methods: {
 		copyWeChat() {
+			uni.getClipboardData({
+				success(res) {
+					wx.showToast({
+						title: '复制微信号成功',
+					})
+					console.log(res.data); // data
+				},
+			});
 			console.log("已复制管理员微信")
 		},
 		toProtocol() {

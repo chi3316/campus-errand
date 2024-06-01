@@ -98,6 +98,13 @@
 				"navigationBarTitleText": "申请接单",
 				"enablePullDownRefresh": false
 			}
+		},
+		{
+			"path": "pages/confirm-protocol/confirm-protocol",
+			"style": {
+				"navigationBarTitleText": "确认电子协议",
+				"enablePullDownRefresh": false
+			}
 		}
 	],
 	"globalStyle": {
