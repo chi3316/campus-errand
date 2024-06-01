@@ -11,7 +11,7 @@
       <view class="box">
         <uni-list>
           <uni-list-item :show-extra-icon="true" :extra-icon="apply" title="申请接单" clickable showArrow
-            @click="onClick" />
+            to="../apply-order/apply-order" />
           <uni-list-item :show-extra-icon="true" :extra-icon="list" title="接单排行" clickable showArrow :to="`./chat`"
             @click="onClick" />
         </uni-list>
