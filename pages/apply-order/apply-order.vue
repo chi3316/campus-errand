@@ -112,6 +112,18 @@ export default {
 		},
 		submit() {
 			console.log(this.applyOrderTakerDTO)
+			// 发送请求
+			this.$request.post("/user/user/applyOrderTaker", this.applyOrderTakerDTO).then((res) => {
+				// 跳转页面
+				uni.switchTab({
+					url: '../profile/profile'
+				})
+				// 弹窗
+				uni.showToast({
+					title: '提交申请成功',
+					duration: 2000
+				});
+			})
 		},
 		// 删除图片
 		deletePic(event) {
