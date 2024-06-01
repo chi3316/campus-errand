@@ -34,7 +34,7 @@
       <view class="box">
         <uni-list>
           <uni-list-item :show-extra-icon="true" :extra-icon="customerService" title="校区客服" clickable showArrow
-            to="./chat" @click="campusService" />
+            @click="campusService" />
           <uni-list-item :show-extra-icon="true" :extra-icon="feedback" title="反馈建议" clickable showArrow to="./chats"
             @click="feedBack" />
           <uni-list-item :show-extra-icon="true" :extra-icon="cooperate" title="合作投诉" clickable showArrow to="./chats"
@@ -143,20 +143,26 @@ export default {
       });
     },
     campusService() {
-      console.log("复制客服微信号");
-      wx.setClipboardData({
-        data: "chichi120877",
-        success(res) {
-          wx.getClipboardData({
-            success(res) {
-              console.log(res.data); // data
-            },
-          });
-          uni.showToast({
-            title: "已复制客服微信号",
-            duration: 2000,
-            icon: "none",
-          });
+      uni.showModal({
+        title: "复制成功",
+        content: "已复制校区客服微信号，您可以添加客服微信反馈问题",
+        showCancel: false,
+        success: (res) => {
+          if (res.confirm) {
+            uni.setClipboardData({
+              data: "chichi120877",
+              success(res) {
+                uni.getClipboardData({
+                  success(res) {
+                    wx.showToast({
+                      title: '已复制客服微信号',
+                    })
+                    console.log(res.data); // data
+                  },
+                });
+              },
+            });
+          }
         },
       });
     },
