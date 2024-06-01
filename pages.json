@@ -74,9 +74,10 @@
 			}
 		},
 		{
-			"path": "pages/cooperative-complaint/cooperative-complaint",
+			"path": "pages/confirm-protocol/confirm-protocol",
 			"style": {
-				"navigationBarTitleText": ""
+				"navigationBarTitleText": "确认电子协议",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
@@ -93,18 +94,32 @@
 			}
 		},
 		{
-			"path": "pages/confirm-protocol/confirm-protocol",
-			"style": {
-				"navigationBarTitleText": "确认电子协议",
-				"enablePullDownRefresh": false
+			"path" : "pages/cooperative-complaint/cooperative-complaint",
+			"style" : 
+			{
+				"navigationBarTitleText" : "合作投诉"
 			}
 		},
+		
 		{
 			"path" : "pages/courier-pickup/courier-pickup",
 			"style" : 
 			{
-				"navigationBarTitleText" : "代取快递",
-				"enablePullDownRefresh" : false
+				"navigationBarTitleText" : "代取快递"
+			}
+		},
+		{
+			"path" : "pages/my-discount-coupon/my-discount-coupon",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我的优惠券"
+			}
+		},
+		{
+			"path" : "pages/rank/rank",
+			"style" : 
+			{
+				"navigationBarTitleText" : "接单排行"
 			}
 		}
 	],
