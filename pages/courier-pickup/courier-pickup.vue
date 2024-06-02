@@ -59,9 +59,9 @@
 					</uni-list>
 				</view>
 			</view>
-		</view>
-		<view>
-			<fui-button radius="96rpx" @click="submit">发布订单</fui-button>
+			<view>
+				<fui-button radius="96rpx" @click="submit">发布订单</fui-button>
+			</view>
 		</view>
 	</view>
 </template>

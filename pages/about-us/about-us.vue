@@ -42,7 +42,9 @@
 			}
 		},
 		methods: {
-			
+			onClick() {
+				uni.navigateTo({url : "/pages/confirm-protocol/confirm-protocol"})
+			}
 		}
 	}
 </script>

@@ -13,27 +13,27 @@
     </view>
     <view style="display: flex" class="box" @click="toCourierPickup">
       <view class="category-item">
-        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%BF%AB%E9%80%92.png" style="width: 50%"
-          mode="widthFix"></image>
+        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/box.png" style="width: 50%" mode="widthFix">
+        </image>
         <view>代取快递</view>
       </view>
 
       <view class="category-item">
-        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%8F%96%E9%A4%90.png" style="width: 50%"
-          mode="widthFix"></image>
+        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/fast-food.png" style="width: 50%" mode="widthFix">
+        </image>
         <view>代取餐品</view>
       </view>
 
       <view class="category-item">
-        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E9%9B%B6%E9%A3%9F.png" style="width: 50%"
-          mode="widthFix"></image>
-        <view>代买零食</view>
+        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/run.png" style="width: 50%" mode="widthFix">
+        </image>
+        <view>校园跑腿</view>
       </view>
 
       <view class="category-item">
-        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E8%8A%B1.png" style="width: 50%"
-          mode="widthFix"></image>
-        <view>代买鲜花</view>
+        <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/other-1.png" style="width: 50%" mode="widthFix">
+        </image>
+        <view>其他服务</view>
       </view>
     </view>
   </view>
