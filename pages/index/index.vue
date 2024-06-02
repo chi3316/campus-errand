@@ -11,7 +11,7 @@
     <view style="margin-bottom: 20rpx">
       <uni-notice-bar v-if="content" show-icon speed="50" scrollable :text="content" />
     </view>
-    <view style="display: flex" class="box">
+    <view style="display: flex" class="box" @click="toCourierPickup">
       <view class="category-item">
         <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/static/%E5%BF%AB%E9%80%92.png" style="width: 50%"
           mode="widthFix"></image>
@@ -88,6 +88,9 @@ export default {
     this.inter = null;
   },
   methods: {
+    toCourierPickup() {
+      uni.navigateTo({ url: "../courier-pickup/courier-pickup" })
+    },
     isTokenExpired(expiration) {
       const currentTime = new Date().getTime();
       return currentTime > expiration;

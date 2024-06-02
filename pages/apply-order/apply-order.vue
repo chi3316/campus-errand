@@ -144,7 +144,7 @@
 					</view>
 				</view>
 
-				<view class="button-container">
+				<view>
 					<fui-button radius="96rpx" @click="submit">提交申请</fui-button>
 				</view>
 			</uni-list>

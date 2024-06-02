@@ -5,7 +5,7 @@
 		</view>
 		<view v-else class="address-content">
 			<fui-card v-for="item in items" :key="item.id" :title="`${item.building}-${item.specificLocation}`"
-				radius="30rpx" :size="35" :margin="['25rpx', '10rpx']">
+				radius="30rpx" :size="35" :margin="['25rpx', '10rpx']" @click=chooseAddr(item)>
 				<view class="fui-card-content">
 					{{ item.consignee }} {{ item.phone }}
 					<view class="buttons-container">
@@ -44,6 +44,11 @@ export default {
 		if (options.refresh) {
 			this.loadAddressData(); // 调用方法刷新地址数据
 		}
+		// options接受到choose => set this.choose = true
+		// 地址组件绑定 @click = chooseAddr : if(choose) {...}
+		if (options.action === 'choose') {
+			this.choose = true;
+		}
 	},
 	created() {
 		this.loadAddressData()
@@ -55,9 +60,28 @@ export default {
 		return {
 			isEmpty: true,
 			items: [],
+			choose: false, // 默认不可选
 		}
 	},
 	methods: {
+		chooseAddr(item) {
+			if (this.choose) {
+				const address = item;
+				// 返回上一页，把地址id传给上一个页面
+				uni.navigateBack({
+					delta: 1, // 返回上一级页面
+					success: (res) => {
+						const id = address.id
+						const building = address.building
+						const specificLocation = address.specificLocation
+						const page = getCurrentPages().pop();
+						if (page == undefined || page == null) return;
+						// 获取地址的标题 ： C10-713
+						page.onLoad({ addrId: id, destination: `${building}-${specificLocation}` });
+					}
+				});
+			}
+		},
 		updateAdress(id) {
 			// 跳转到add界面
 			uni.navigateTo({

@@ -31,10 +31,10 @@
     </view>
     <view>
       <!-- 邀请新人 -->
-			<uni-popup ref="share" type="share" safeArea backgroundColor="#fff">
-				<uni-popup-share></uni-popup-share>
-			</uni-popup>
-		</view>
+      <uni-popup ref="share" type="share" safeArea backgroundColor="#fff">
+        <uni-popup-share></uni-popup-share>
+      </uni-popup>
+    </view>
 
     <view style="margin-top: 20rpx">
       <view class="box">

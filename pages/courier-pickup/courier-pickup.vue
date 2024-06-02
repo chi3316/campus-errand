@@ -9,13 +9,14 @@
 					快递大小
 				</view>
 				<view class="price-options">
-					<uni-data-checkbox mode="tag" v-model="radio" :localdata="sex"></uni-data-checkbox>
+					<uni-data-checkbox mode="tag" v-model="radio" :localdata="size"></uni-data-checkbox>
 				</view>
 				<view class="text-desc">
 					取件信息
 				</view>
 				<view class="input">
-					<uni-easyinput type="textarea" v-model="value" placeholder="请输入取件码或上传截图"></uni-easyinput>
+					<uni-easyinput type="textarea" v-model="orderSubmitDTO.info"
+						placeholder="请输入取件码或上传截图"></uni-easyinput>
 				</view>
 				<view class="text-desc">
 					上传图片
@@ -28,44 +29,124 @@
 				<view class="list">
 					<!-- other lists -->
 					<uni-list>
-						<uni-list-item showArrow title="收件地址" rightText="请选择地址" />
-						<uni-list-item showArrow title="快递商家" rightText="请选择快递点" />
-						<uni-list-item showArrow title="优惠券" rightText="请选择优惠券" />
+						<uni-list-item title="收件地址" clickable @click="chooseAddr">
+							<template v-slot:footer>
+								<text class="list-text">{{ destination }}</text>
+							</template>
+						</uni-list-item>
+						<view class="remark-container">
+							<view class="item">
+								<uni-list-item title="快递商家" />
+							</view>
+							<view class="input-container">
+								<input v-model="orderSubmitDTO.departureAddress" placeholder="请输入取货点"
+									class="list-text" />
+							</view>
+						</view>
+						<uni-list-item title="优惠券" clickable>
+							<template v-slot:footer>
+								<text class="list-text">请选择优惠券</text>
+							</template>
+						</uni-list-item>
 						<view class="remark-container">
 							<view class="item">
 								<uni-list-item title="备注信息" />
 							</view>
 							<view class="input-container">
-								<input v-model="remark" placeholder="所有人可见" />
+								<input v-model="orderSubmitDTO.remark" placeholder="所有人可见" class="list-text" />
 							</view>
 						</view>
 					</uni-list>
 				</view>
 			</view>
 		</view>
+		<view>
+			<fui-button radius="96rpx" @click="submit">发布订单</fui-button>
+		</view>
 	</view>
 </template>
 <script>
+import fuiButton from "@/components/firstui/fui-button/fui-button.vue"
 export default {
+	components: {
+		fuiButton,
+	},
 	data() {
 		return {
-			radio: 0,
-			sex: [{
+			radio: 2,
+			size: [{
 				text: '小件 ￥2',
-				value: 0
+				value: 2
 			}, {
 				text: '中件 ￥5',
-				value: 1
+				value: 5
 			}, {
 				text: '大件 ￥7',
-				value: 2
+				value: 7
 			}],
-			value: '',
 			fileList1: [],
-			remark: ''
+			destination: '请选择地址',
+			orderSubmitDTO: {
+				addressBookId: '',
+				departureAddress: '',
+				title: '代取快递',
+				amount: '',
+				remark: '',
+				imageUrl: '',
+				info: '',
+			}
 		}
 	},
+	watch: {
+		radio(newVal) {
+			this.orderSubmitDTO.amount = newVal;
+		}
+	},
+	onLoad(options) {
+		// console.log("选择的地址：" + options)  ? => 这里为什么不会打印options这个对象？
+		console.log("选择的地址id：" + options.addrId)
+		console.log("选择的地址destination：" + options.destination)
+		this.orderSubmitDTO.addressBookId = options.addrId;
+		this.destination = options.destination;
+	},
 	methods: {
+		checkValue() {
+			console.log(this.orderSubmitDTO)
+			const { addressBookId, departureAddress, amount, remark, imageUrl, info } = this.orderSubmitDTO;
+			return addressBookId && departureAddress && amount && remark && imageUrl && info;
+		},
+		submit() {
+			if (!this.checkValue()) {
+				uni.showToast({
+					title: '发布失败！请填写完整信息',
+					icon: 'none',
+					duration: 2000
+				});
+				return;
+			}
+
+			// 成功填写数据 
+			// 发送请求
+			this.$request.post("/user/order/submit", this.orderSubmitDTO).then((res) => {
+				if (res.code === 1) {
+					// 跳转页面
+					uni.switchTab({
+						url: '../index/index'
+					})
+					// 弹窗
+					uni.showToast({
+						title: '订单发布成功',
+						duration: 2000
+					});
+				}
+			})
+		},
+		chooseAddr() {
+			// 选择地址
+			// 跳转到地址页面，携带参数choose
+			console.log("跳转到选择地址页面")
+			uni.navigateTo({ url: "../address/address?action=choose" })
+		},
 		// 删除图片
 		deletePic(event) {
 			this[`fileList${event.name}`].splice(event.index, 1)
@@ -104,6 +185,7 @@ export default {
 					success: (res) => {
 						const url = JSON.parse(res.data).data;
 						console.log(url)
+						this.orderSubmitDTO.imageUrl = url
 						// 逻辑处理
 						setTimeout(() => {
 							resolve(res.data.data)
@@ -186,5 +268,11 @@ export default {
 	margin-right: 20rpx;
 	text-align: right;
 	/* 给输入框一些左边距，以防与列表项重叠 */
+}
+
+.list-text {
+	font-size: 28rpx;
+	/* 你可以根据需要调整字体大小 */
+	color: #808080;
 }
 </style>
