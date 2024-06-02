@@ -1,71 +1,166 @@
 <template>
-	<view style="margin: 20rpx">
-		<uni-list>
-			<view class="container">
-				<view class="item">
-					<uni-list-item :show-extra-icon="true" :extra-icon="name" title="名字" />
-				</view>
-				<view class="input-container">
-					<input v-model="applyOrderTakerDTO.name" placeholder="请输入姓名" class="text-input" />
-				</view>
-			</view>
+	<view>
+		<view v-if="isApply" class="box">
+			<text class="text">手续费说明</text>
+			<fui-divider width="800rpx" height="25"></fui-divider>
+			<text class>以下为[华南理工大学]各项服务的手续费用，为保证平台服务发展所收取的费用</text>
 
-			<view class="container">
-				<view class="item">
-					<uni-list-item :show-extra-icon="true" :extra-icon="number" title="学号" />
+			<fui-divider width="800rpx" height="25"></fui-divider>
+			<uni-list>
+				<uni-row>
+					<uni-col :span="8">
+						<text>服务项</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>平台</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>接单员</text>
+					</uni-col>
+				</uni-row>
+				<fui-divider width="800rpx" height="25"></fui-divider>
+				<uni-row>
+					<uni-col :span="8">
+						<text>快递代取</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>5%</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>95%</text>
+					</uni-col>
+				</uni-row>
+				<uni-row>
+					<uni-col :span="8">
+						<text>快递代寄</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>5%</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>95%</text>
+					</uni-col>
+				</uni-row>
+				<uni-row>
+					<uni-col :span="8">
+						<text>校园跑腿</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>5%</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>95%</text>
+					</uni-col>
+				</uni-row>
+				<uni-row>
+					<uni-col :span="8">
+						<text>游戏陪玩</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>5%</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>95%</text>
+					</uni-col>
+				</uni-row>
+				<uni-row>
+					<uni-col :span="8">
+						<text>代替服务</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>5%</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>95%</text>
+					</uni-col>
+				</uni-row>
+				<uni-row>
+					<uni-col :span="8">
+						<text>其他帮助</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>5%</text>
+					</uni-col>
+					<uni-col :span="8">
+						<text>95%</text>
+					</uni-col>
+				</uni-row>
+			</uni-list>
+			<fui-divider width="800rpx" height="25"></fui-divider>
+			<fui-button text="下一步" @click="changeIsApply"></fui-button>
+		</view>
+		<view style="margin: 20rpx" v-else>
+			<uni-list>
+				<view class="container">
+					<view class="item">
+						<uni-list-item :show-extra-icon="true" :extra-icon="name" title="名字" />
+					</view>
+					<view class="input-container">
+						<input v-model="applyOrderTakerDTO.name" placeholder="请输入姓名" class="text-input" />
+					</view>
 				</view>
-				<view class="input-container">
-					<input v-model="applyOrderTakerDTO.studentId" placeholder="请输入学号" class="text-input" />
-				</view>
-			</view>
 
-			<view class="file-container">
-				<view class="item">
-					<uni-list-item :show-extra-icon="true" :extra-icon="card" title="学生证" />
+				<view class="container">
+					<view class="item">
+						<uni-list-item :show-extra-icon="true" :extra-icon="number" title="学号" />
+					</view>
+					<view class="input-container">
+						<input v-model="applyOrderTakerDTO.studentId" placeholder="请输入学号" class="text-input" />
+					</view>
 				</view>
-				<view style="margin-left: 120rpx;">
-					<u-upload :fileList="fileList6" @afterRead="afterRead" @delete="deletePic" name="6" multiple
-						:maxCount="1" :previewFullImage="true" width="250" height="150">
-						<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/20240601110646.jpg"
-							mode="widthFix" style="width: 250px;height: 150px;"></image>
-					</u-upload>
+
+				<view class="file-container">
+					<view class="item">
+						<uni-list-item :show-extra-icon="true" :extra-icon="card" title="学生证" />
+					</view>
+					<view style="margin-left: 120rpx;">
+						<u-upload :fileList="fileList6" @afterRead="afterRead" @delete="deletePic" name="6" multiple
+							:maxCount="1" :previewFullImage="true" width="250" height="150">
+							<image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/20240601110646.jpg"
+								mode="widthFix" style="width: 250px;height: 150px;"></image>
+						</u-upload>
+					</view>
 				</view>
-			</view>
 
 
-			<view class="container">
-				<view class="item">
-					<uni-list-item :show-extra-icon="true" :extra-icon="protocol" title="电子协议" />
+				<view class="container">
+					<view class="item">
+						<uni-list-item :show-extra-icon="true" :extra-icon="protocol" title="电子协议" />
+					</view>
+					<view class="input-container">
+						<label @click="toProtocol">
+							<text style="margin-right: 10rpx; color: #00aaff">勾选表示同意协议</text>
+							<checkbox :checked="confirmed" @change="handleCheckboxChange" />
+						</label>
+					</view>
 				</view>
-				<view class="input-container">
-					<label @click="toProtocol">
-						<text style="margin-right: 10rpx; color: #00aaff">勾选表示同意协议</text>
-						<checkbox :checked="confirmed" @change="handleCheckboxChange" />
-					</label>
-				</view>
-			</view>
 
-			<view class="container">
-				<view class="item">
-					<uni-list-item :show-extra-icon="true" :extra-icon="weixin" title="加急审核" />
+				<view class="container">
+					<view class="item">
+						<uni-list-item :show-extra-icon="true" :extra-icon="weixin" title="加急审核" />
+					</view>
+					<view class="input-container">
+						<a @click="copyWeChat" style="color: #00aaff">联系校区管理员</a>
+					</view>
 				</view>
-				<view class="input-container">
-					<a @click="copyWeChat" style="color: #00aaff">联系校区管理员</a>
-				</view>
-			</view>
 
-			<view class="button-container">
-				<fui-button radius="96rpx" @click="submit">提交申请</fui-button>
-			</view>
-		</uni-list>
+				<view class="button-container">
+					<fui-button radius="96rpx" @click="submit">提交申请</fui-button>
+				</view>
+			</uni-list>
+		</view>
 	</view>
+
 </template>
 
 <script>
 import fuiButton from "@/components/firstui/fui-button/fui-button.vue"
+import fuiDivider from "@/components/firstui/fui-divider/fui-divider.vue"
+
 export default {
 	components: {
-		fuiButton
+		fuiButton,
+		fuiDivider,
 	},
 	data() {
 		return {
@@ -101,7 +196,8 @@ export default {
 				studentCard: '',
 				studentId: ''
 			},
-			confirmed: false
+			confirmed: false,
+			isApply: true,
 		};
 	},
 	methods: {
@@ -204,6 +300,9 @@ export default {
 				});
 			})
 		},
+		changeIsApply() {
+			this.isApply = false;
+		}
 	}
 };
 </script>
@@ -244,5 +343,11 @@ export default {
 .text-input {
 	text-align: right;
 	/* 使输入框中的文字左对齐 */
+}
+
+.text {
+	text-align: center;
+	display: block;
+	margin-bottom: 20rpx;
 }
 </style>

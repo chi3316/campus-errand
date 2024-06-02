@@ -13,7 +13,7 @@
           <uni-list-item :show-extra-icon="true" :extra-icon="apply" title="申请接单" clickable showArrow
             to="../apply-order/apply-order" />
           <uni-list-item :show-extra-icon="true" :extra-icon="list" title="接单排行" clickable showArrow :to="`./chat`"
-            @click="onClick" />
+            @click="rank" />
         </uni-list>
       </view>
     </view>
@@ -23,12 +23,18 @@
       <view class="box">
         <uni-list>
           <uni-list-item :show-extra-icon="true" :extra-icon="gift" title="我的优惠卷" clickable showArrow
-            @click="onClick" />
+            @click="myDiscountCoupon" />
           <uni-list-item :show-extra-icon="true" :extra-icon="invite" title="邀请新人" clickable showArrow :to="`./chat`"
-            @click="onClick" />
+            @click="inviteNewPerson" />
         </uni-list>
       </view>
     </view>
+    <view>
+      <!-- 邀请新人 -->
+			<uni-popup ref="share" type="share" safeArea backgroundColor="#fff">
+				<uni-popup-share></uni-popup-share>
+			</uni-popup>
+		</view>
 
     <view style="margin-top: 20rpx">
       <view class="box">
@@ -172,6 +178,28 @@ export default {
         url: "/pages/feedback/feedback",
       });
     },
+    requestForOrder() {
+      console.log("跳转到申请接单");
+      uni.navigateTo({
+        url: "/pages/request-for-order/request-for-order",
+      });
+    },
+    myDiscountCoupon() {
+      console.log("跳转到我的优惠券");
+      uni.navigateTo({
+        url: "/pages/my-discount-coupon/my-discount-coupon",
+      });
+    },
+    rank() {
+      console.log("跳转到接单排行");
+      uni.navigateTo({
+        url: "/pages/rank/rank",
+      });
+    },
+    inviteNewPerson() {
+      console.log("邀请新人");
+      this.$refs.share.open()
+    }
   },
 };
 </script>
