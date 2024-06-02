@@ -39,13 +39,13 @@
         <uni-list-item :show-extra-icon="true" :extra-icon="address" title="我的地址" clickable showArrow
           @click="toAddress" />
         <uni-list-item :show-extra-icon="true" :extra-icon="income" title="收支明细" clickable showArrow to="./chats"
-          @click="onClick" />
+          @click="incomeOutcome" />
       </uni-list>
       <uni-list>
         <uni-list-item :show-extra-icon="true" :extra-icon="apply" title="申请商户" clickable showArrow to="./chat"
-          @click="onClick" />
+          @click="applyAdmission" />
         <uni-list-item :show-extra-icon="true" :extra-icon="campus" title="更换校区" clickable showArrow to="./chats"
-          @click="onClick" />
+          @click="changeCampus" />
       </uni-list>
     </view>
   </view>
@@ -57,6 +57,7 @@ import fuiIcon from "@/components/firstui/fui-icon/fui-icon.vue";
 import fuiList from "@/components/firstui/fui-list/fui-list.vue";
 import fuiListCell from "@/components/firstui/fui-list-cell/fui-list-cell.vue";
 import fuiText from "@/components/firstui/fui-text/fui-text.vue";
+import IncomeOutcome from "../income-outcome/income-outcome.vue";
 
 export default {
   components: {
@@ -217,6 +218,24 @@ export default {
         },
       });
     },
+    applyAdmission() {
+      console.log("跳转到申请商户");
+      uni.navigateTo({
+        url: "/pages/apply-admission/apply-admission",
+      });
+    },
+    changeCampus() {
+      console.log("跳转到更换校区");
+      uni.navigateTo({
+        url: "/pages/change-campus/change-campus",
+      });
+    },
+    incomeOutcome() {
+      console.log("跳转到收支明细");
+      uni.navigateTo({
+        url: "/pages/income-outcome/income-outcome",
+      });
+    }
   },
 };
 </script>
