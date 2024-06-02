@@ -24,6 +24,19 @@ export default {
 	components: {
 		fuiButton,
 	},
+	onLoad(options) {
+		this.action = options.action;
+		console.log(options.id)
+		const id = options.id;
+		if (options.action === 'update') {
+			// 获取id对应的地址信息，回显
+			this.$request.get(`/user/address/${id}`).then((res) => {
+				this.formData = res.data;
+				console.log(this.formData)
+			})
+			// 输入新的数据 => update
+		}
+	},
 	data() {
 		return {
 			formData: {
@@ -32,19 +45,33 @@ export default {
 				consignee: '', // 姓名
 				phone: '', //手机号
 			},
+			action: '',
 		}
 	},
 	methods: {
 		submitAddress() {
-			this.$request.put("/user/address/save", this.formData).then((res) => {
-				console.log(res)
-				if (res.code === 1) {
-					uni.showToast({
-						title: '添加成功',
-						duration: 2000
-					});
-				}
-			})
+			if (this.action === 'update') {
+				this.$request.post("/user/address/update", this.formData).then((res) => {
+					if (res.code === 1) {
+						console.log("修改地址信息成功")
+						uni.showToast({
+							title: '修改成功',
+							duration: 2000
+						});
+					}
+				})
+			} else if (this.action === 'add') {
+				this.$request.put("/user/address/save", this.formData).then((res) => {
+					console.log(res)
+					if (res.code === 1) {
+						uni.showToast({
+							title: '添加成功',
+							duration: 2000
+						});
+					}
+				})
+			}
+
 			uni.navigateBack({
 				delta: 1, // 返回上一级页面
 				success: function () {

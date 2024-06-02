@@ -10,7 +10,8 @@
 					{{ item.consignee }} {{ item.phone }}
 					<view class="buttons-container">
 						<view class="edit-button">
-							<fui-button background="#37CBE8" width="100rpx" height="70rpx">编辑</fui-button>
+							<fui-button background="#37CBE8" width="100rpx" height="70rpx"
+								@click="updateAdress(item.id)">编辑</fui-button>
 						</view>
 						<view class="delete-button">
 							<fui-button background="#EEEEEE" color="#DE1E54" border-color="#0099FF" width="100rpx"
@@ -39,6 +40,7 @@ export default {
 		fuiCard,
 	},
 	onLoad(options) {
+		console.log(options)
 		if (options.refresh) {
 			this.loadAddressData(); // 调用方法刷新地址数据
 		}
@@ -56,6 +58,15 @@ export default {
 		}
 	},
 	methods: {
+		updateAdress(id) {
+			// 跳转到add界面
+			uni.navigateTo({
+				// 把action和id传过去
+				url: `/pages/add-address/add-address?action=update&id=${id}`
+			})
+			// 返回提示请求成功
+			// 刷新地址信息
+		},
 		removeAddress(id) {
 			// 发送请求删除该id对应的地址
 			console.log("尝试删除地址：" + id)
@@ -94,7 +105,7 @@ export default {
 		jumpAddAdress() {
 			console.log("跳转新增地址页面");
 			uni.navigateTo({
-				url: '/pages/add-address/add-address', // 跳转页面
+				url: '/pages/add-address/add-address?action=add', // 跳转页面
 			})
 		},
 		loadAddressData() {
