@@ -2,7 +2,7 @@
   <view style="padding: 20rpx">
     <view style="margin-bottom: 20rpx">
       <swiper circular indicator-dots autoplay :interval="interval" :duration="duration" style="height: 350rpx"
-        indicator-color="rgba(255,255,255,0.6)" indicator-active-color="#3CB371">
+        indicator-color="rgba(255,255,255,0.6)" indicator-active-color="#3CB371" @click="toTakeOrder">
         <swiper-item v-for="item in imgs" :key="item">
           <image :src="item" alt="" style="width: 100%; height: 350rpx"></image>
         </swiper-item>
@@ -88,6 +88,9 @@ export default {
     this.inter = null;
   },
   methods: {
+    toTakeOrder() {
+      uni.navigateTo({ url: "../apply-order/apply-order" })
+    },
     toCourierPickup() {
       uni.navigateTo({ url: "../courier-pickup/courier-pickup" })
     },
