@@ -125,7 +125,7 @@ export default {
           });
         },
         fail: function (err) {
-          console.log("登录失败" + err.code);
+          console.log("登录失败：无法请求微信接口！" + err.code); // 一般是网络问题
         },
       });
     },

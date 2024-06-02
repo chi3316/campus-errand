@@ -14,7 +14,7 @@
 						</view>
 						<view class="delete-button">
 							<fui-button background="#EEEEEE" color="#DE1E54" border-color="#0099FF" width="100rpx"
-								height="70rpx" @click="removeAddress(item.id)">删除</fui-button>
+								height="70rpx" @click="confirmRemoveAddr(item.id)">删除</fui-button>
 						</view>
 					</view>
 				</view>
@@ -56,6 +56,41 @@ export default {
 		}
 	},
 	methods: {
+		removeAddress(id) {
+			// 发送请求删除该id对应的地址
+			console.log("尝试删除地址：" + id)
+			this.$request.del(`/user/address/delete/?id=${id}`).then((res) => {
+				if (res.code === 1) {
+					uni.showToast({
+						title: '删除成功',
+						duration: 2000
+					});
+					// 刷新地址列表
+					this.loadAddressData();
+				} else {
+					uni.showToast({
+						title: '删除失败',
+						icon: 'none',
+						duration: 2000
+					});
+				}
+			})
+		},
+		confirmRemoveAddr(id) {
+			const addressId = id;
+			uni.showModal({
+				title: '提示',
+				content: '您确定要删除改地址吗？',
+				success: (res) => {  // 使用箭头函数
+					if (res.confirm) {
+						console.log('用户点击确定');
+						this.removeAddress(addressId);  // 此处的this仍然指向Vue实例
+					} else if (res.cancel) {
+						console.log('用户点击取消');
+					}
+				}
+			});
+		},
 		jumpAddAdress() {
 			console.log("跳转新增地址页面");
 			uni.navigateTo({
