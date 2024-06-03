@@ -2,10 +2,11 @@
 	<view class="container">
 		<view class="segmented-control-wrap">
 			<uni-segmented-control :current="current" :values="items" :style-type="styleType"
-				:active-color="activeColor"/>
+				:active-color="activeColor" />
 		</view>
 		<view class="empty-wrap">
-			<fui-empty src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20240601113716.png" isFixed="true" width="733"></fui-empty>
+			<u-empty mode="coupon" icon="http://cdn.uviewui.com/uview/empty/coupon.png">
+			</u-empty>
 		</view>
 	</view>
 </template>
@@ -49,9 +50,11 @@ export default {
 	flex-direction: column;
 	height: 100vh;
 }
+
 .segmented-control-wrap {
 	flex-shrink: 0;
 }
+
 .empty-wrap {
 	flex: 1;
 	display: flex;
