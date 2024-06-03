@@ -125,7 +125,7 @@ export default {
 				return;
 			}
 
-			// 成功填写数据 
+			// 成功填写数据
 			// 发送请求
 			this.$request.post("/user/order/submit", this.orderSubmitDTO).then((res) => {
 				if (res.code === 1) {

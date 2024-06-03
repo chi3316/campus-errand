@@ -10,7 +10,7 @@
 					<view v-for="item in orderList" :key="item.id" class="order-box" style="margin-bottom: 10rpx;">
 						<uni-card :title="item.title" :sub-title="item.orderTime" :extra="item.status"
 							:thumbnail="item.avatar" @click="onClick" is-full="true" is-shadow="true">
-							<view class="order-info">这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</view>
+							<view class="order-info">备注：{{ item.remark }}</view>
 							<view class="path">
 								<template>
 									<u-steps current="1" direction="column">
@@ -37,7 +37,7 @@
 							style="margin-bottom: 10rpx;">
 							<uni-card :title="item.title" :sub-title="item.orderTime" :extra="item.status"
 								:thumbnail="item.avatar" @click="onClick" is-full="true" is-shadow="true">
-								<view class="order-info">这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</view>
+								<view class="order-info">备注：{{ item.remark }}</view>
 								<view class="path">
 									<template>
 										<u-steps current="1" direction="column">
@@ -65,7 +65,7 @@
 							style="margin-bottom: 10rpx;">
 							<uni-card :title="item.title" :sub-title="item.orderTime" :extra="item.status"
 								:thumbnail="item.avatar" @click="onClick" is-full="true" is-shadow="true">
-								<view class="order-info">这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</view>
+								<view class="order-info">备注：{{ item.remark }}</view>
 								<view class="path">
 									<template>
 										<u-steps current="1" direction="column">
@@ -93,7 +93,7 @@
 							style="margin-bottom: 10rpx;">
 							<uni-card :title="item.title" :sub-title="item.orderTime" :extra="item.status"
 								:thumbnail="item.avatar" @click="onClick" is-full="true" is-shadow="true">
-								<view class="order-info">这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</view>
+								<view class="order-info">备注：{{ item.remark }}</view>
 								<view class="path">
 									<template>
 										<u-steps current="1" direction="column">
@@ -242,24 +242,24 @@ export default {
 			console.log("formatted data: ", this.orderList);
 			this.setOrderListByStatus(formattedData)
 			return formattedData;
-		}
+		},
+		onClick() {
+			uni.navigateTo({
+				url: '/pages/order-details/order-details', // 替换成实际的页面路径
+			});
+		},
+		styleChange(e) {
+			if (this.styleType !== e.detail.value) {
+				this.styleType = e.detail.value
+			}
+		},
+		colorChange(e) {
+			if (this.styleType !== e.detail.value) {
+				console.log(e.detail.value);
+				this.activeColor = e.detail.value
+			}
+		},
 	},
-	styleChange(e) {
-		if (this.styleType !== e.detail.value) {
-			this.styleType = e.detail.value
-		}
-	},
-	colorChange(e) {
-		if (this.styleType !== e.detail.value) {
-			console.log(e.detail.value);
-			this.activeColor = e.detail.value
-		}
-	},
-	onClick() {
-		uni.navigateTo({
-			url: '/pages/order-details/order-details', // 替换成实际的页面路径
-		});
-	}
 }
 </script>
 
