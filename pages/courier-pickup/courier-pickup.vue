@@ -43,7 +43,7 @@
 									class="list-text" />
 							</view>
 						</view>
-						<uni-list-item title="优惠券" clickable>
+						<uni-list-item title="优惠券" clickable @click="chooseCoupon">
 							<template v-slot:footer>
 								<text class="list-text">请选择优惠券</text>
 							</template>
@@ -110,6 +110,9 @@ export default {
 		this.destination = options.destination;
 	},
 	methods: {
+		chooseCoupon() {
+			uni.navigateTo({ url: "/pages/my-discount-coupon/my-discount-coupon" })
+		},
 		checkValue() {
 			console.log(this.orderSubmitDTO)
 			const { addressBookId, departureAddress, amount, remark, imageUrl, info } = this.orderSubmitDTO;

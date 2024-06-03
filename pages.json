@@ -35,13 +35,6 @@
 			}
 		},
 		{
-			"path": "pages/test/test",
-			"style": {
-				"navigationBarTitleText": "测试页面",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
 			"path": "pages/order-details/order-details",
 			"style": {
 				"navigationBarTitleText": "订单详情",
@@ -94,53 +87,45 @@
 			}
 		},
 		{
-			"path" : "pages/cooperative-complaint/cooperative-complaint",
-			"style" : 
-			{
-				"navigationBarTitleText" : "合作投诉"
-			}
-		},
-		
-		{
-			"path" : "pages/courier-pickup/courier-pickup",
-			"style" : 
-			{
-				"navigationBarTitleText" : "代取快递"
+			"path": "pages/cooperative-complaint/cooperative-complaint",
+			"style": {
+				"navigationBarTitleText": "合作投诉"
 			}
 		},
 		{
-			"path" : "pages/my-discount-coupon/my-discount-coupon",
-			"style" : 
-			{
-				"navigationBarTitleText" : "我的优惠券"
+			"path": "pages/courier-pickup/courier-pickup",
+			"style": {
+				"navigationBarTitleText": "代取快递"
 			}
 		},
 		{
-			"path" : "pages/rank/rank",
-			"style" : 
-			{
-				"navigationBarTitleText" : "接单排行"
+			"path": "pages/my-discount-coupon/my-discount-coupon",
+			"style": {
+				"navigationBarTitleText": "我的优惠券"
 			}
 		},
 		{
-			"path" : "pages/apply-admission/apply-admission",
-			"style" : 
-			{
-				"navigationBarTitleText" : "申请入驻"
+			"path": "pages/rank/rank",
+			"style": {
+				"navigationBarTitleText": "接单排行"
 			}
 		},
 		{
-			"path" : "pages/change-campus/change-campus",
-			"style" : 
-			{
-				"navigationBarTitleText" : "选择学校"
+			"path": "pages/apply-admission/apply-admission",
+			"style": {
+				"navigationBarTitleText": "申请入驻"
 			}
 		},
 		{
-			"path" : "pages/income-outcome/income-outcome",
-			"style" : 
-			{
-				"navigationBarTitleText" : "收支明细"
+			"path": "pages/change-campus/change-campus",
+			"style": {
+				"navigationBarTitleText": "选择学校"
+			}
+		},
+		{
+			"path": "pages/income-outcome/income-outcome",
+			"style": {
+				"navigationBarTitleText": "收支明细"
 			}
 		}
 	],
