@@ -40,7 +40,8 @@ export default {
 		fuiCard,
 	},
 	onLoad(options) {
-		console.log(options)
+		console.log("address: onLoad")
+		console.log("options.refresh: " + options.refresh)
 		if (options.refresh) {
 			this.loadAddressData(); // 调用方法刷新地址数据
 		}
