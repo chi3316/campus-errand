@@ -52,36 +52,44 @@ export default {
 	},
 	methods: {
 		submitAddress() {
-			if (this.action === 'update') {
-				this.$request.post("/user/address/update", this.formData).then((res) => {
-					if (res.code === 1) {
-						console.log("修改地址信息成功")
-						uni.showToast({
-							title: '修改成功',
-							duration: 2000
-						});
-					}
-				})
-			} else if (this.action === 'add') {
-				this.$request.put("/user/address/save", this.formData).then((res) => {
-					console.log(res)
-					if (res.code === 1) {
-						uni.showToast({
-							title: '添加成功',
-							duration: 2000
-						});
-					}
-				})
-			}
-			console.log("back to address")
-			uni.navigateBack({
-				delta: 1, // 返回上一级页面
-				success: function () {
-					const page = getCurrentPages().pop();
-					if (page == undefined || page == null) return;
-					console.log('页面路径' + page.route)
-					page.onLoad({ refresh: true });
+			// 根据操作类型调用不同的 API
+			const request = this.action === 'update'
+				? this.$request.post("/user/address/update", this.formData)
+				: this.$request.put("/user/address/save", this.formData);
+
+			request.then((res) => {
+				if (res.code === 1) {
+					const successMessage = this.action === 'update' ? '修改成功' : '添加成功';
+					uni.showToast({
+						title: successMessage,
+						duration: 2000
+					});
+
+					// API 请求成功后再进行页面跳转
+					uni.navigateBack({
+						delta: 1, // 返回上一级页面
+						success: function () {
+							const page = getCurrentPages().pop();
+							if (page == undefined || page == null) return;
+							page.onLoad({ refresh: true });
+						}
+					});
+				} else {
+					// 请求返回非成功状态码时的处理
+					uni.showToast({
+						title: res.message || '操作失败',
+						duration: 2000,
+						icon: 'none'
+					});
 				}
+			}).catch((error) => {
+				// 请求失败时的处理
+				console.error("API请求失败", error);
+				uni.showToast({
+					title: '请求失败，请稍后再试',
+					duration: 2000,
+					icon: 'none'
+				});
 			});
 		},
 	}
