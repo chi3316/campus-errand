@@ -9,7 +9,7 @@
 				<view v-if="currentState === 0">
 					<view v-for="item in orderList" :key="item.id" class="order-box" style="margin-bottom: 10rpx;">
 						<uni-card :title="item.title" :sub-title="item.orderTime" :extra="item.status"
-							:thumbnail="item.avatar" @click="onClick" is-full="true" is-shadow="true">
+							:thumbnail="item.avatar" @click="onClick(item.id)" is-full="true" is-shadow="true">
 							<view class="order-info">备注：{{ item.remark }}</view>
 							<view class="path">
 								<template>
@@ -36,7 +36,7 @@
 						<view v-for="item in orderListStatus0" :key="item.id" class="order-box"
 							style="margin-bottom: 10rpx;">
 							<uni-card :title="item.title" :sub-title="item.orderTime" :extra="item.status"
-								:thumbnail="item.avatar" @click="onClick" is-full="true" is-shadow="true">
+								:thumbnail="item.avatar" @click="onClick(item.id)" is-full="true" is-shadow="true">
 								<view class="order-info">备注：{{ item.remark }}</view>
 								<view class="path">
 									<template>
@@ -64,7 +64,7 @@
 						<view v-for="item in orderListStatus2" :key="item.id" class="order-box"
 							style="margin-bottom: 10rpx;">
 							<uni-card :title="item.title" :sub-title="item.orderTime" :extra="item.status"
-								:thumbnail="item.avatar" @click="onClick" is-full="true" is-shadow="true">
+								:thumbnail="item.avatar" @click="onClick(item.id)" is-full="true" is-shadow="true">
 								<view class="order-info">备注：{{ item.remark }}</view>
 								<view class="path">
 									<template>
@@ -92,7 +92,7 @@
 						<view v-for="item in orderListStatus4" :key="item.id" class="order-box"
 							style="margin-bottom: 10rpx;">
 							<uni-card :title="item.title" :sub-title="item.orderTime" :extra="item.status"
-								:thumbnail="item.avatar" @click="onClick" is-full="true" is-shadow="true">
+								:thumbnail="item.avatar" @click="onClick(item.id)" is-full="true" is-shadow="true">
 								<view class="order-info">备注：{{ item.remark }}</view>
 								<view class="path">
 									<template>
@@ -235,9 +235,10 @@ export default {
 			this.setOrderListByStatus(formattedData)
 			return formattedData;
 		},
-		onClick() {
+		onClick(orderId) {
+			console.log("orderId: " + orderId);
 			uni.navigateTo({
-				url: '/pages/order-details/order-details', // 替换成实际的页面路径
+				url: '/pages/order-details/order-details?orderId=' + orderId, // 替换成实际的页面路径
 			});
 		},
 		styleChange(e) {
