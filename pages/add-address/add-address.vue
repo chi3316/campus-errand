@@ -25,8 +25,10 @@ export default {
 		fuiButton,
 	},
 	onLoad(options) {
+		console.log("add-address: onLoad")
 		this.action = options.action;
-		console.log(options.id)
+		console.log("options.action: " + options.action)
+		console.log("options.id: " + options.id)
 		const id = options.id;
 		if (options.action === 'update') {
 			// 获取id对应的地址信息，回显
@@ -72,6 +74,7 @@ export default {
 				})
 			}
 
+			console.log("back to address")
 			uni.navigateBack({
 				delta: 1, // 返回上一级页面
 				success: function () {

@@ -18,7 +18,7 @@
             <uni-list-item :show-extra-icon="true" :extra-icon="name" title="名字" />
           </view>
           <view class="input-container">
-            <input type="nickname" v-model="user.nickName" placeholder="" class="nickname-input"
+            <input type="nickname" v-model="user.nickName" placeholder="请输入用户名" class="nickname-input"
               @change="updateNickname" />
           </view>
         </view>
@@ -126,28 +126,35 @@ export default {
   },
   methods: {
     updatePhone(event) {
-      // 这里前面接口没考虑好，这些数据更新可以写到一个函数的
-      const phone = event.target.value;
-      if (phone.length !== 11) {
-        uni.showToast({
-          title: '提交失败！请填写正确手机号码',
-          icon: 'none',
-          duration: 2000
-        });
-        return
+      const phone = Number(event.target.value);
+      if (isNaN(phone) || phone.toString().length !== 11) {
+      uni.showToast({
+        title: '提交失败！请填写正确手机号码',
+        icon: 'none',
+        duration: 2000
+      });
+      return;
       }
       const userUpdateDTO = { avatar: null, name: null, phone: phone };
       this.$request.post("/user/user/update", userUpdateDTO);
       // 更新本地存储中的号码信息
       let storedUser = uni.getStorageSync("xm-user");
       if (storedUser) {
-        storedUser.phone = phone;
-        uni.setStorageSync("xm-user", storedUser);
+      storedUser.phone = phone;
+      uni.setStorageSync("xm-user", storedUser);
       }
-      console.log(this.user.phoneNumber)
+      console.log(this.user.phoneNumber);
     },
     updateNickname(event) {
       const newNickName = event.target.value;
+      if (newNickName === "") {
+        uni.showToast({
+          title: '提交失败！请填写正确昵称',
+          icon: 'none',
+          duration: 2000
+        });
+        return
+      }
       const userUpdateDTO = { avatar: null, name: newNickName, phone: null };
       request
         .post(
