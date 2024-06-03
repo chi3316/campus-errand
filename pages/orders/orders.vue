@@ -171,15 +171,6 @@ export default {
 		onClickItem(e) {
 			if (this.currentState !== e.currentIndex) {
 				this.currentState = e.currentIndex
-				console.log(this.currentState)
-
-				if (this.currentState === 1) {
-					console.log(this.orderListStatus0)
-				} else if (this.currentState === 2) {
-					console.log(this.orderListStatus2)
-				} else if (this.currentState === 3) {
-					console.log(this.orderListStatus4)
-				}
 			}
 		},
 		// 计算时间差
@@ -203,7 +194,7 @@ export default {
 		setOrderListByStatus(data) {
 			this.orderListStatus0 = data.filter(order => order.status === '待帮助');
 			this.orderListStatus2 = data.filter(order => order.status === '已完成');
-			this.orderListStatus4 = data.filter(order => order.userId === uni.getStorageSync("xm-user")?.id);
+			this.orderListStatus4 = data.filter(order => order.receiverId === uni.getStorageSync("xm-user")?.id);
 		},
 		// 格式化数据
 		formatData(data) {
