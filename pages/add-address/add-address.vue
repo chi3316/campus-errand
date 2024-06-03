@@ -73,13 +73,13 @@ export default {
 					}
 				})
 			}
-
 			console.log("back to address")
 			uni.navigateBack({
 				delta: 1, // 返回上一级页面
 				success: function () {
 					const page = getCurrentPages().pop();
 					if (page == undefined || page == null) return;
+					console.log('页面路径' + page.route)
 					page.onLoad({ refresh: true });
 				}
 			});

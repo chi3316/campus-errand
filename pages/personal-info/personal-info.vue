@@ -57,8 +57,7 @@ import fuiIcon from "@/components/firstui/fui-icon/fui-icon.vue";
 import fuiList from "@/components/firstui/fui-list/fui-list.vue";
 import fuiListCell from "@/components/firstui/fui-list-cell/fui-list-cell.vue";
 import fuiText from "@/components/firstui/fui-text/fui-text.vue";
-import IncomeOutcome from "../income-outcome/income-outcome.vue";
-
+import apiConfig from '@/config.js'
 export default {
   components: {
     fuiIcon,
@@ -128,20 +127,20 @@ export default {
     updatePhone(event) {
       const phone = Number(event.target.value);
       if (isNaN(phone) || phone.toString().length !== 11) {
-      uni.showToast({
-        title: '提交失败！请填写正确手机号码',
-        icon: 'none',
-        duration: 2000
-      });
-      return;
+        uni.showToast({
+          title: '提交失败！请填写正确手机号码',
+          icon: 'none',
+          duration: 2000
+        });
+        return;
       }
       const userUpdateDTO = { avatar: null, name: null, phone: phone };
       this.$request.post("/user/user/update", userUpdateDTO);
       // 更新本地存储中的号码信息
       let storedUser = uni.getStorageSync("xm-user");
       if (storedUser) {
-      storedUser.phone = phone;
-      uni.setStorageSync("xm-user", storedUser);
+        storedUser.phone = phone;
+        uni.setStorageSync("xm-user", storedUser);
       }
       console.log(this.user.phoneNumber);
     },
@@ -182,13 +181,13 @@ export default {
       const { avatarUrl } = e.detail;
       // 把新上传的头像发送到后端
       this.user.avatarUrl = avatarUrl;
+      const baseUrl = process.env.NODE_ENV === 'develpoment' ? apiConfig.dev.baseUrl : apiConfig.prod.baseUrl
       wx.getImageInfo({
         src: this.user.avatarUrl,
         success: function (sres) {
           //上传图片
           wx.uploadFile({
-            // TODO : 这个url不能写死
-            url: "http://localhost:8081/user/common/upload",
+            url: `${baseUrl}/user/common/upload`,
             header: { token: uni.getStorageSync("xm-user")?.token },
             filePath: sres.path,
             name: "file",

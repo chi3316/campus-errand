@@ -121,6 +121,7 @@
 </template>
 
 <script>
+
 export default {
 	onLoad() {
 		this.fetchOrders();
@@ -162,7 +163,7 @@ export default {
 				if (res.code === 1) {
 					let orders = res.data;
 					this.originalOrderList = orders;
-					console.log("original data : " + JSON.stringify(orders, null, 2));
+					// console.log("original data : " + JSON.stringify(orders, null, 2));
 					this.orderList = this.formatData(orders);
 				}
 			})

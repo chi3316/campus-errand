@@ -57,6 +57,7 @@ export default {
   },
 
   onShow() {
+    console.log(process.env.NODE_ENV)
     this.load();
     // 检查本地存储中是否有用户信息
     const userData = uni.getStorageSync("xm-user");

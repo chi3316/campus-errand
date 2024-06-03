@@ -66,6 +66,7 @@
 	</view>
 </template>
 <script>
+import apiConfig from '@/config.js'
 import fuiButton from "@/components/firstui/fui-button/fui-button.vue"
 export default {
 	components: {
@@ -179,9 +180,10 @@ export default {
 		},
 		// 上传到服务器
 		uploadFilePromise(url) {
+			const baseUrl = process.env.NODE_ENV === 'develpoment' ? apiConfig.dev.baseUrl : apiConfig.prod.baseUrl
 			return new Promise((resolve, reject) => {
 				let a = uni.uploadFile({
-					url: 'http://localhost:8081/user/common/upload',
+					url: `${baseUrl}/user/common/upload`,
 					filePath: url,
 					name: 'file',
 					header: { token: uni.getStorageSync("xm-user")?.token },

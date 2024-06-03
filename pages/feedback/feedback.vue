@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import apiConfig from '@/config.js'
 export default {
 	data() {
 		return {
@@ -63,10 +64,11 @@ export default {
 			this.imageurls.push(e)
 		},
 		upload(e) {
+			const baseUrl = process.env.NODE_ENV === 'develpoment' ? apiConfig.dev.baseUrl : apiConfig.prod.baseUrl
 			const tempFilePaths = e.tempFilePaths;// e是获取的图片源
 			// 上传图片到后端接口，返回url，保存到数组里，最后点击按钮的时候一起提交
 			uni.uploadFile({
-				url: 'http://localhost:8081/user/common/upload',
+				url: `${baseUrl}/user/common/upload`,
 				header: { token: uni.getStorageSync("xm-user").token },
 				filePath: tempFilePaths[0],
 				name: 'file',
