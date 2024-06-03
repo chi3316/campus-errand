@@ -12,6 +12,6 @@ page {
 .box {
 	background-color: #fff;
 	padding: 20rpx;
-	border-radius: 10rpx;
-	box-shadow: 0 4rpx 20rpx rgba(0,0,0,.1);
+	border-radius: 20rpx;
+	box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, .1);
 }
