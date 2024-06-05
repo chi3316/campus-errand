@@ -8,18 +8,30 @@
 			<view style="margin:20rpx;">
 				<view class="title">发起人</view>
 				<view>
-					<uni-card title="基础卡片" :sub-title="timeInfo" :extra="status" :thumbnail="avatar" @click="onClick"
+					<uni-card :title="title" :sub-title="orderTime" :extra="status" :thumbnail="avatar" @click="onClick"
 						is-full="true">
 						<view>
 							<view style="margin:20rpx;">
-								<text class="uni-body">校门口拿kfc</text>
+								<text>备注：{{ remark }}</text>
 							</view>
 							<view>
-								<text class="uni-body" style="font-size: 30rpx;">订单已完成，相关信息已隐藏</text>
+								<fui-tag text="订单详情" type="primary" theme="light" style="position: relative; top: 20rpx;"></fui-tag>
+							</view>
+							<view style="position: relative; top: 20rpx;">
+								<template>
+									<u-steps current="1" direction="column">
+										<u-steps-item title="起点" :desc="departureAddress">
+											<text class="departure-icon" slot="icon">起</text>
+										</u-steps-item>
+										<u-steps-item title="终点" :desc="destinationAddress">
+											<text class="destination-icon" slot="icon">终</text>
+										</u-steps-item>
+									</u-steps>
+								</template>
 							</view>
 							<!-- <u-tag text="money" plain size="mini" shape="circle"></u-tag> -->
 							<view class="rounded-box">
-								金额 25￥
+								金额￥{{ amount }}
 							</view>
 							<!-- 右下角按钮容器 -->
 							<view class="button-container">
@@ -38,11 +50,11 @@
 				</view>
 			</view>
 
-			<view style="margin:20rpx;" v-if="showHireling">
-				<view class="title">接单人</view>
-				<view>
-					<uni-card title="基础卡片" sub-title="副标题"  :thumbnail="avatar" @click="onClick"
-						is-full="true">
+			<view style="margin:20rpx;" >
+				<view class="title" v-if="showHireling">接单人</view>
+				<view class="title" v-else>暂无接单人</view>
+				<view v-if="showHireling">
+					<uni-card title="基础卡片" sub-title="副标题" :thumbnail="avatar" @click="onClick" is-full="true">
 						<!-- 左上角按钮容器 -->
 						<view class="right-up-button-container">
 							<view class="circle-button">
@@ -54,166 +66,273 @@
 								<text class="button-text">电话</text>
 							</view>
 						</view>
-						<!-- 订单号 -->
-						<view class="order-info">
-							<text class="info-label">订单号：</text>
-							<text class="info-value">{{ orderNumber }}</text>
-						</view>
-						<view class="divider"></view>
-						<!-- 联系管理员 -->
-						<view class="order-info">
-							<text class="info-label">联系管理员：</text>
-							<text class="info-value">{{ orderNumber }}</text>
-						</view>
-						<view class="divider"></view>
-						<!-- 支付时间 -->
-						<view class="order-info">
-							<text class="info-label">支付时间：</text>
-							<text class="info-value">{{ paymentTime }}</text>
-						</view>
-						<!-- 横线分隔 -->
-						<view class="divider"></view>
-						<!-- 接单时间 -->
-						<view class="order-info">
-							<text class="info-label">接单时间：</text>
-							<text class="info-value">{{ orderTime }}</text>
-						</view>
-						<view class="divider"></view>
-						<!-- 完成时间 -->
-						<view class="order-info">
-							<text class="info-label">完成时间：</text>
-							<text class="info-value">{{ orderTime }}</text>
-						</view>
-						<view class="divider"></view>
 					</uni-card>
 				</view>
+				<view class="box">
+					<!-- 订单号 -->
+					<view class="order-info">
+						<text class="info-label">订单号：</text>
+						<text class="info-value" style="position: relative; left: 160rpx;">{{ orderNumber }}</text>
+						<fui-icon name="order" size="32" @click="copy"></fui-icon>
+					</view>
+					<view class="divider"></view>
+					<!-- 联系管理员 -->
+					<view class="order-info">
+						<text class="info-label">联系管理员：</text>
+						<text class="info-value">联系管理员</text>
+					</view>
+					<view class="divider"></view>
+					<!-- 支付时间 -->
+					<view class="order-info">
+						<text class="info-label">支付时间：</text>
+						<text class="info-value">{{ paymentTime }}</text>
+					</view>
+					<!-- 横线分隔 -->
+					<view class="divider"></view>
+					<!-- 接单时间 -->
+					<view class="order-info">
+						<text class="info-label">接单时间：</text>
+						<text class="info-value">{{ orderTime }}</text>
+					</view>
+					<view class="divider"></view>
+					<!-- 完成时间 -->
+					<view class="order-info">
+						<text class="info-label">完成时间：</text>
+						<text class="info-value">{{ finishTime }}</text>
+					</view>
+					<view class="divider"></view>
+				</view>
+			</view>
+
+			<view>
+				<fui-button text="接单" background="#37CBE8" radius="500rpx" width="95%" style="position: relative; left: 20rpx; top: 10rpx;" @click="commit"></fui-button>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				content: '太阳天或下雨天，人挤人的咖啡店，找一个能想你舒服的角落...',
-				showHireling: true,
-				avatar: 'https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png',
-				timeInfo: '2024-2-26 13:05:22',
-				status: '已完成',
-				orderNumber: '123456789', // 替换成实际的订单号
-				orderTime: '2024-02-26 13:05:22', // 替换成实际的下单时间
-				paymentTime: '2024-02-26 13:10:45' // 替换成实际的支付时间
-				// 其他订单信息，根据需要添加更多数据
-			}
-		},
-		methods: {
-			onClick() {
-				console.log('点击查看地址信息')
-			}
+import fuiTag from "@/components/firstui/fui-tag/fui-tag.vue"
+import fuiIcon from "@/components/firstui/fui-icon/fui-icon.vue"
+import fuiButton from "@/components/firstui/fui-button/fui-button.vue"
+
+export default {
+	components: {
+		fuiTag,
+		fuiIcon,
+		fuiButton,
+	},
+	data() {
+		return {
+			content: '太阳天或下雨天，人挤人的咖啡店，找一个能想你舒服的角落...',
+			showHireling: false, // 是否显示接单任
+			avatar: '', // 头像
+			status: '', // 订单状态
+			orderNumber: '', // 订单号
+			orderTime: '', // 下单时间
+			paymentTime: '', // 支付时间
+			finishTime: '', // 完成时间
+			// 其他订单信息，根据需要添加更多数据
+			title: '', // 订单标题
+			remark: '', // 订单备注
+			departureAddress: '', // 起点
+			destinationAddress: '', // 终点
+			amount: '', // 金额
 		}
+	},
+	methods: {
+		onClick() {
+			console.log('点击查看地址信息')
+		},
+		// 复制订单号
+		copy() {
+			uni.showModal({
+				title: "复制成功",
+				content: "已复订单号",
+				showCancel: false,
+				success: (res) => {
+				if (res.confirm) {
+					uni.setClipboardData({
+					data: this.orderNumber,
+					success(res) {
+						uni.getClipboardData({
+						success(res) {
+							wx.showToast({
+							title: '已复制订单号',
+							})
+						},
+						});
+					},
+					});
+				}
+				},
+			});
+		},
+	},
+	onLoad(options) {
+		const orderId = options.orderId;
+		// 获取订单详情
+		this.$request.get(`/user/order/orderDetail/${orderId}`).then((res) => {
+			if (res.code === 1) {
+				let order = res.data;
+				console.log("order data : " + JSON.stringify(order, null, 2));
+				this.title = order.title;
+				this.orderTime = order.orderTime;
+				this.paymentTime = order.payTime;
+				this.finishTime = order.finishTime;
+				this.remark = order.remark;
+				this.departureAddress = order.departureAddress;
+				this.destinationAddress = order.destinationAddress;
+				this.amount = order.amount;
+				this.avatar = order.avatar;
+				this.orderNumber = order.number;
+				if (order.status === 0) {
+					this.status = '待帮助';
+					this.showHireling = false;
+				} else if (order.status === 1) {
+					this.status = '已帮助';
+					this.showHireling = true;
+				} else if (order.status === 2) {
+					this.status = '已完成';
+					this.showHireling = true;
+				}
+			}
+		});
+		console.log("showHireling: " + this.showHireling)
 	}
+}
 </script>
 
 <style>
-	.title {
-		font-size: 30rpx;
-		font-weight: 400;
-		margin-bottom: 10rpx;
-	}
+.title {
+	font-size: 30rpx;
+	font-weight: 400;
+	margin-bottom: 10rpx;
+}
 
-	.button-container {
-		position: absolute;
-		bottom: 10px;
-		/* 距离底部 10 像素 */
-		right: 10px;
-		/* 距离右侧 10 像素 */
-		display: flex;
-		flex-direction: row;
-		/* 横向排列按钮 */
-	}
-	
-	.right-up-button-container {
-		position: absolute;
-		top: 10px;
-		/* 距离底部 10 像素 */
-		right: 10px;
-		/* 距离右侧 10 像素 */
-		display: flex;
-		flex-direction: row;
-		/* 横向排列按钮 */
-	}
+.button-container {
+	position: absolute;
+	bottom: 10px;
+	/* 距离底部 10 像素 */
+	right: 10px;
+	/* 距离右侧 10 像素 */
+	display: flex;
+	flex-direction: row;
+	/* 横向排列按钮 */
+}
 
-	.circle-button {
-		width: 40px;
-		/* 调整按钮宽度 */
-		height: 40px;
-		/* 调整按钮高度 */
-		background-color: #0291ff;
-		/* 蓝色背景 */
-		border-radius: 50%;
-		/* 圆形按钮 */
-		margin-right: 10px;
-		/* 按钮间距 */
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
+.right-up-button-container {
+	position: absolute;
+	top: 10px;
+	/* 距离底部 10 像素 */
+	right: 10px;
+	/* 距离右侧 10 像素 */
+	display: flex;
+	flex-direction: row;
+	/* 横向排列按钮 */
+}
+
+.circle-button {
+	display: flex;
+	width: 40px;
+	/* 调整按钮宽度 */
+	height: 40px;
+	/* 调整按钮高度 */
+	background-color: #0291ff;
+	/* 蓝色背景 */
+	border-radius: 50%;
+	/* 圆形按钮 */
+	margin-right: 10px;
+	/* 按钮间距 */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
 
 
-	.icon {
-		width: 20px;
-		/* 调整图标大小 */
-		height: 20px;
+.icon {
+	width: 20px;
+	/* 调整图标大小 */
+	height: 8rpx;
 
-	}
+}
 
-	.button-text {
-		color: #fff;
-		/* 文字颜色为白色 */
-		font-size: 22rpx;
-	}
+.button-text {
+	position: relative;
+	top: 14rpx;
+	color: #fff;
+	/* 文字颜色为白色 */ 
+	font-size: 15rpx;
+}
 
-	.rounded-box {
-		width: 150rpx;
+.rounded-box {
+	position: relative;
+	top: 20rpx;
 
-		bottom: 0;
-		/* 调整底部位置 */
-		left: 0;
-		/* 调整左侧位置 */
-		padding: 5rpx;
-		/* 调整内边距 */
-		color: #00aaff;
-		/* 文字颜色为白色 */
-		border-radius: 40rpx;
-		/* 圆角半径 */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 150rpx;
 
-		border: 1rpx solid #fff;
-		/* 添加边框 */
-		border-color: #55aaff;
-	}
+	bottom: 0;
+	/* 调整底部位置 */
+	left: 0;
+	/* 调整左侧位置 */
+	padding: 5rpx;
+	/* 调整内边距 */
+	color: #00aaff;
+	/* 文字颜色为白色 */
+	border-radius: 40rpx;
+	/* 圆角半径 */
 
-	.order-info {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin: 10px 0;
-	}
+	border: 1rpx solid #fff;
+	/* 添加边框 */
+	border-color: #55aaff;
+}
 
-	.info-label {
-		font-size: 14px;
-		color: #333;
-	}
+.order-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 10px 0;
+}
 
-	.info-value {
-		font-size: 14px;
-		color: #666;
-	}
+.info-label {
+	font-size: 14px;
+	color: #333;
+}
 
-	.divider {
-		height: 1px;
-		background-color: #ddd;
-		margin: 10px 0;
-	}
+.info-value {
+	font-size: 14px;
+	color: #999999;
+}
+
+.divider {
+	height: 1px;
+	background-color: #ddd;
+	margin: 10px 0;
+}
+
+.departure-icon {
+	width: 21px;
+	height: 21px;
+	background-color: rgb(19, 141, 241);
+	border-radius: 100px;
+	font-size: 12px;
+	color: #fff;
+	line-height: 21px;
+	text-align: center;
+}
+
+.destination-icon {
+	width: 21px;
+	height: 21px;
+	background-color: rgb(39, 188, 39);
+	border-radius: 100px;
+	font-size: 12px;
+	color: #fff;
+	line-height: 21px;
+	text-align: center;
+}
 </style>

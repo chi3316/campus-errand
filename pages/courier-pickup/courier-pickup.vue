@@ -91,7 +91,7 @@ export default {
 				addressBookId: '',
 				departureAddress: '',
 				title: '代取快递',
-				amount: '',
+				amount: '2',
 				remark: '',
 				imageUrl: '',
 				info: '',
@@ -135,7 +135,7 @@ export default {
 				if (res.code === 1) {
 					// 跳转页面
 					uni.switchTab({
-						url: '../index/index'
+						url: '../orders/orders'
 					})
 					// 弹窗
 					uni.showToast({
