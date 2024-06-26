@@ -4,7 +4,8 @@
 			<uni-card padding="0" spacing="0">
 				<template v-slot:cover>
 					<view class="custom-cover">
-						<image class="cover-image" mode="aspectFill" src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/a2fe9e9377d24610e4c8a7d96eca500.png">
+						<image class="cover-image" mode="aspectFill"
+							src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/a2fe9e9377d24610e4c8a7d96eca500.png">
 						</image>
 					</view>
 				</template>
@@ -18,69 +19,76 @@
 		<view class="content2">
 			<uni-list>
 				<uni-list-item :show-extra-icon="true" title="跑跑乐校园用户协议" clickable showArrow
-					@click="onClick" />
+					@click="onClick('跑跑乐校园用户协议')" />
 				<uni-list-item :show-extra-icon="true" title="商户入驻平台协议" clickable showArrow
-					 @click="onClick" />
+					@click="onClick('商户入驻平台协议')" />
 				<uni-list-item :show-extra-icon="true" title="消费者权益保障说明" clickable showArrow
-					@click="onClick" />
+					@click="onClick('消费者权益保障说明')" />
 				<uni-list-item :show-extra-icon="true" title="食品安全管理办法" clickable showArrow
-					@click="onClick" />
+					@click="onClick('食品安全管理办法')" />
 			</uni-list>
 		</view>
 	</view>
 </template>
 
 <script>
-	import fuiCard from "@/components/firstui/fui-card/fui-card.vue"
-	export default {
-		components: {
-			fuiCard,
-		},
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			onClick() {
-				uni.navigateTo({url : "/pages/confirm-protocol/confirm-protocol"})
-			}
+import fuiCard from "@/components/firstui/fui-card/fui-card.vue"
+export default {
+	components: {
+		fuiCard,
+	},
+	data() {
+		return {
+
+		}
+	},
+	methods: {
+		onClick(title) {
+			uni.navigateTo({
+				url: '/pages/confirm-protocol/confirm-protocol?title=' + title,
+			});
 		}
 	}
+}
 </script>
 
 <style>
-	.profile {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		padding: 10rpx 0;
-		width: 100%;
-	}
-	.custom-cover {
-		position: relative;
-	}
-	.cover-image {
-		border-radius: 16rpx; /* 设置圆角半径 */
-	}
-	.content {
-		background-color: #fff;
-		padding: 20rpx;
-		border-radius: 10rpx;
-		box-shadow: 0 4rpx 20rpx rgba(0,0,0,.1);
-		margin-left: 60rpx;
-		margin-right: 60rpx;
-		margin-top: 0rpx;
-	}
-	.content2 {
-		background-color: #fff;
-		padding: 20rpx;
-		border-radius: 10rpx;
-		box-shadow: 0 4rpx 20rpx rgba(0,0,0,.1);
-		margin-left: 60rpx;
-		margin-right: 60rpx;
-		margin-top: 50rpx;
-	}
+.profile {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 10rpx 0;
+	width: 100%;
+}
+
+.custom-cover {
+	position: relative;
+}
+
+.cover-image {
+	border-radius: 16rpx;
+	/* 设置圆角半径 */
+}
+
+.content {
+	background-color: #fff;
+	padding: 20rpx;
+	border-radius: 10rpx;
+	box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, .1);
+	margin-left: 60rpx;
+	margin-right: 60rpx;
+	margin-top: 0rpx;
+}
+
+.content2 {
+	background-color: #fff;
+	padding: 20rpx;
+	border-radius: 10rpx;
+	box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, .1);
+	margin-left: 60rpx;
+	margin-right: 60rpx;
+	margin-top: 50rpx;
+}
 </style>

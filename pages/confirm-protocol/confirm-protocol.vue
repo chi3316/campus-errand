@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view>
-			<h3 style="font-size: 18px; font-weight: bold; text-align: center;">申请接单电子协议书</h3>
+			<h3 style="font-size: 18px; font-weight: bold; text-align: center;">{{ title }}</h3>
 			<p style="text-indent: 2em; line-height: 1.5;">
 				<strong>第一条 定义</strong><br /><br />
 
@@ -50,8 +50,11 @@ export default {
 	},
 	data() {
 		return {
-
+			title: '申请接单电子协议书'
 		}
+	},
+	onLoad(options) {
+		this.title = options.title
 	},
 	methods: {
 		confirm() {

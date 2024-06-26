@@ -57,6 +57,15 @@ export default {
   },
 
   onShow() {
+    uni.login({
+      provider: "weixin",
+      onlyAuthorize: true,
+      success: function (event) {
+        const { code } = event;
+        const userLoginDTO = { code };
+        console.log(userLoginDTO)
+      }
+    })
     console.log(process.env.NODE_ENV)
     this.load();
     // 检查本地存储中是否有用户信息
