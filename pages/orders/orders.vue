@@ -126,6 +126,9 @@ export default {
 	onLoad() {
 		this.fetchOrders();
 	},
+	onShow() {
+		this.fetchOrders();
+	},
 	data() {
 		return {
 			currentState: 0,
