@@ -55,7 +55,7 @@
 				<view class="title" v-if="showHireling">接单人</view>
 				<view class="title" v-else>暂无接单人</view>
 				<view v-if="showHireling">
-					<uni-card :title="receiverName":thumbnail="receiverAvatar" @click="onClick" is-full="true">
+					<uni-card :title="receiverName" :thumbnail="receiverAvatar" @click="onClick" is-full="true">
 						<!-- 左上角按钮容器 -->
 						<view class="right-up-button-container">
 							<view class="circle-button">

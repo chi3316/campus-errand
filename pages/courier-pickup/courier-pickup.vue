@@ -105,8 +105,6 @@ export default {
 	},
 	onLoad(options) {
 		// console.log("选择的地址：" + options)  ? => 这里为什么不会打印options这个对象？
-		console.log("选择的地址id：" + options.addrId)
-		console.log("选择的地址destination：" + options.destination)
 		this.orderSubmitDTO.addressBookId = options.addrId;
 		this.destination = options.destination;
 	},
@@ -136,7 +134,7 @@ export default {
 					// 跳转页面
 					uni.switchTab({
 						url: '../orders/orders',
-						success: function() {
+						success: function () {
 							const page = getCurrentPages().pop();
 							if (page == undefined || page == null) return;
 							page.onLoad();

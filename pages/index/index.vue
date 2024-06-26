@@ -18,19 +18,19 @@
         <view>代取快递</view>
       </view>
 
-      <view class="category-item">
+      <view class="category-item" @click="toCourierPickup">
         <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/fast-food.png" style="width: 50%" mode="widthFix">
         </image>
         <view>代取餐品</view>
       </view>
 
-      <view class="category-item">
+      <view class="category-item" @click="toErrand">
         <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/run.png" style="width: 50%" mode="widthFix">
         </image>
         <view>校园跑腿</view>
       </view>
 
-      <view class="category-item">
+      <view class="category-item" @click="toCourierPickup">
         <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/other-1.png" style="width: 50%" mode="widthFix">
         </image>
         <view>其他服务</view>
@@ -98,6 +98,9 @@ export default {
     this.inter = null;
   },
   methods: {
+    toErrand() {
+      uni.navigateTo({ url: "../errand/errand" })
+    },
     toTakeOrder() {
       uni.navigateTo({ url: "../apply-order/apply-order" })
     },
