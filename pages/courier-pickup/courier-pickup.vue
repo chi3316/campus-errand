@@ -135,7 +135,12 @@ export default {
 				if (res.code === 1) {
 					// 跳转页面
 					uni.switchTab({
-						url: '../orders/orders'
+						url: '../orders/orders',
+						success: function() {
+							const page = getCurrentPages().pop();
+							if (page == undefined || page == null) return;
+							page.onLoad();
+						},
 					})
 					// 弹窗
 					uni.showToast({
