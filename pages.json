@@ -129,19 +129,24 @@
 			}
 		},
 		{
-			"path" : "pages/meal-pickup/meal-pickup",
-			"style" : 
-			{
-				"navigationBarTitleText" : "代取餐品",
-				"enablePullDownRefresh" : false
+			"path": "pages/meal-pickup/meal-pickup",
+			"style": {
+				"navigationBarTitleText": "代取餐品",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
-			"path" : "pages/errand/errand",
-			"style" : 
-			{
-				"navigationBarTitleText" : "校园跑腿",
-				"enablePullDownRefresh" : false
+			"path": "pages/errand/errand",
+			"style": {
+				"navigationBarTitleText": "校园跑腿",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/other-service/other-service",
+			"style": {
+				"navigationBarTitleText": "其它服务",
+				"enablePullDownRefresh": false
 			}
 		}
 	],

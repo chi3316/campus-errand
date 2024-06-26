@@ -30,7 +30,7 @@
         <view>校园跑腿</view>
       </view>
 
-      <view class="category-item" @click="toCourierPickup">
+      <view class="category-item" @click="toOtherService">
         <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/other-1.png" style="width: 50%" mode="widthFix">
         </image>
         <view>其他服务</view>
@@ -98,6 +98,9 @@ export default {
     this.inter = null;
   },
   methods: {
+    toOtherService() {
+      uni.navigateTo({ url: "../other-service/other-service" })
+    },
     toErrand() {
       uni.navigateTo({ url: "../errand/errand" })
     },
