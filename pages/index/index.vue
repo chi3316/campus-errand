@@ -18,7 +18,7 @@
         <view>代取快递</view>
       </view>
 
-      <view class="category-item" @click="toCourierPickup">
+      <view class="category-item" @click="toMealPickup">
         <image src="https://web-cjpdemo.oss-cn-guangzhou.aliyuncs.com/fast-food.png" style="width: 50%" mode="widthFix">
         </image>
         <view>代取餐品</view>
@@ -98,6 +98,9 @@ export default {
     this.inter = null;
   },
   methods: {
+    toMealPickup() {
+      uni.navigateTo({ url: "../meal-pickup/meal-pickup" })
+    },
     toOtherService() {
       uni.navigateTo({ url: "../other-service/other-service" })
     },
