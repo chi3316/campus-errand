@@ -1,15 +1,10 @@
 <template>
 	<view>
 		<view>
-			<view style="margin-bottom: 20rpx; margin:20rpx; border: 20rpx;">
-				<uni-notice-bar v-if="content" show-icon speed="50" scrollable :text="content" />
-			</view>
-
 			<view style="margin:20rpx;">
 				<view class="title">发起人</view>
 				<view>
-					<uni-card :title="title" :sub-title="orderTime" :extra="status" :thumbnail="avatar"
-						is-full="true">
+					<uni-card :title="title" :sub-title="orderTime" :extra="status" :thumbnail="avatar" is-full="true">
 						<view>
 							<view style="margin:20rpx;">
 								<text>备注：{{ remark }}</text>
@@ -108,16 +103,18 @@
 			<view v-if="!showHireling">
 				<view v-if="!isApplyer">
 					<fui-button text="接单" background="#37CBE8" radius="500rpx" width="95%"
-						style="position: relative; left: 20rpx; top: 10rpx;" @click="commit"></fui-button>		
+						style="position: relative; left: 20rpx; top: 10rpx;" @click="commit"></fui-button>
 				</view>
 				<view v-else>
 					<fui-button text="确认完成订单" background="#37CBE8" radius="500rpx" width="95%"
-					style="position: relative; left: 20rpx; top: 10rpx;" @click="ackOrder" :disabled="isAckOrder"></fui-button>		
+						style="position: relative; left: 20rpx; top: 10rpx;" @click="ackOrder"
+						:disabled="isAckOrder"></fui-button>
 				</view>
 			</view>
 			<view v-else>
 				<fui-button text="确认完成订单" background="#37CBE8" radius="500rpx" width="95%"
-				style="position: relative; left: 20rpx; top: 10rpx;" @click="ackOrder" :disabled="isAckOrder"></fui-button>		
+					style="position: relative; left: 20rpx; top: 10rpx;" @click="ackOrder"
+					:disabled="isAckOrder"></fui-button>
 			</view>
 		</view>
 	</view>
@@ -138,7 +135,6 @@ export default {
 	},
 	data() {
 		return {
-			content: '太阳天或下雨天，人挤人的咖啡店，找一个能想你舒服的角落...',
 			showHireling: false, // 是否显示接单人
 			avatar: '', // 头像
 			status: '', // 订单状态
@@ -204,16 +200,16 @@ export default {
 				showCancel: true,
 				success: (res) => {
 					if (res.confirm) {
-					this.$request.put(`/user/order/acceptOrder/${this.orderId}`).then((res) => {
-						if (res.code === 1) {
-							uni.showToast({
-								title: '接单成功',
-								icon: 'success'
-							});
-							this.showHireling = true;
-							this.fetchOrder();
-						}
-					});
+						this.$request.put(`/user/order/acceptOrder/${this.orderId}`).then((res) => {
+							if (res.code === 1) {
+								uni.showToast({
+									title: '接单成功',
+									icon: 'success'
+								});
+								this.showHireling = true;
+								this.fetchOrder();
+							}
+						});
 
 					}
 				},
@@ -297,13 +293,13 @@ export default {
 					success: (res) => {
 						if (res.confirm) {
 							this.$request.put(`/user/order/ackOrder/${this.orderId}`).then((res) => {
-							if (res.code === 1) {
-								uni.showToast({
-									title: '订单已完成',
-									icon: 'success'
-								});
-								this.fetchOrder();
-							}
+								if (res.code === 1) {
+									uni.showToast({
+										title: '订单已完成',
+										icon: 'success'
+									});
+									this.fetchOrder();
+								}
 							});
 						}
 					}
