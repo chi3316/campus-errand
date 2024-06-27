@@ -2,7 +2,7 @@
 	<view class="box">
 		<view>
 			<uni-card title="订单附加照片">
-				<image style="display: flex; width: 300px; height: 200px; background-color: #eeeeee;" :mode="aspectFit"
+				<image style="display: flex; width: 300px; height: 200px; background-color: #eeeeee;" mode="widthFix"
 					:src="imageUrl" @error="imageError"></image>
 			</uni-card>
 		</view>

@@ -200,16 +200,25 @@ export default {
 				showCancel: true,
 				success: (res) => {
 					if (res.confirm) {
-						this.$request.put(`/user/order/acceptOrder/${this.orderId}`).then((res) => {
-							if (res.code === 1) {
-								uni.showToast({
-									title: '接单成功',
-									icon: 'success'
-								});
-								this.showHireling = true;
-								this.fetchOrder();
-							}
-						});
+						const storedUser = uni.getStorageSync("xm-user");
+						console.log("是否有接单资格：" + storedUser.isOrderTaker);
+						if (storedUser.isOrderTaker === 2) {
+							this.$request.put(`/user/order/acceptOrder/${this.orderId}`).then((res) => {
+								if (res.code === 1) {
+									uni.showToast({
+										title: '接单成功',
+										icon: 'success'
+									});
+									this.showHireling = true;
+									this.fetchOrder();
+								}
+							});
+						} else {
+							uni.showModal({
+							title: "没有接单资格",
+							content: "申请接单通过审核后才能接单哦~",
+							showCancel: false,})
+						}
 
 					}
 				},
