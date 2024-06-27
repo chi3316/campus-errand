@@ -112,9 +112,11 @@
 				</view>
 			</view>
 			<view v-else>
-				<fui-button text="确认完成订单" background="#37CBE8" radius="500rpx" width="95%"
-					style="position: relative; left: 20rpx; top: 10rpx;" @click="ackOrder"
-					:disabled="isAckOrder"></fui-button>
+				<view v-if="!isFinished">
+					<fui-button text="确认完成订单" background="#37CBE8" radius="500rpx" width="95%"
+						style="position: relative; left: 20rpx; top: 10rpx;" @click="ackOrder"
+						:disabled="isAckOrder"></fui-button>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -160,6 +162,7 @@ export default {
 			info: '', // 订单详细信息
 			imageUrl: '', // 订单详情图片
 			isAckOrder: false, // 是否确认完成订单
+			isFinished: false, // 是否已被接单或已完成订单
 		}
 	},
 	methods: {
@@ -276,6 +279,9 @@ export default {
 				this.isApplyer = true;
 			} else {
 				this.isApplyer = false;
+				if (this.status === '已完成' || this.status === '已帮助') {
+					this.isFinished = true;
+				}
 			}
 		},
 		// 点击“订单详情”事件
