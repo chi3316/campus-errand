@@ -8,7 +8,7 @@
 			<view style="margin:20rpx;">
 				<view class="title">发起人</view>
 				<view>
-					<uni-card :title="title" :sub-title="orderTime" :extra="status" :thumbnail="avatar" @click="onClick"
+					<uni-card :title="title" :sub-title="orderTime" :extra="status" :thumbnail="avatar"
 						is-full="true">
 						<view>
 							<view style="margin:20rpx;">
@@ -16,7 +16,7 @@
 							</view>
 							<view>
 								<fui-tag text="订单详情" type="primary" theme="light"
-									style="position: relative; top: 20rpx;"></fui-tag>
+									style="position: relative; top: 20rpx;" @click="orderDetailInfo"></fui-tag>
 							</view>
 							<view style="position: relative; top: 20rpx;">
 								<template>
@@ -106,8 +106,18 @@
 			</view>
 
 			<view v-if="!showHireling">
-				<fui-button text="接单" background="#37CBE8" radius="500rpx" width="95%"
-					style="position: relative; left: 20rpx; top: 10rpx;" @click="commit"></fui-button>
+				<view v-if="!isApplyer">
+					<fui-button text="接单" background="#37CBE8" radius="500rpx" width="95%"
+						style="position: relative; left: 20rpx; top: 10rpx;" @click="commit"></fui-button>		
+				</view>
+				<view v-else>
+					<fui-button text="确认完成订单" background="#37CBE8" radius="500rpx" width="95%"
+					style="position: relative; left: 20rpx; top: 10rpx;" @click="ackOrder" :disabled="isAckOrder"></fui-button>		
+				</view>
+			</view>
+			<view v-else>
+				<fui-button text="确认完成订单" background="#37CBE8" radius="500rpx" width="95%"
+				style="position: relative; left: 20rpx; top: 10rpx;" @click="ackOrder" :disabled="isAckOrder"></fui-button>		
 			</view>
 		</view>
 	</view>
@@ -117,12 +127,14 @@
 import fuiTag from "@/components/firstui/fui-tag/fui-tag.vue"
 import fuiIcon from "@/components/firstui/fui-icon/fui-icon.vue"
 import fuiButton from "@/components/firstui/fui-button/fui-button.vue"
+import fuiDialog from "@/components/firstui/fui-dialog/fui-dialog.vue"
 
 export default {
 	components: {
 		fuiTag,
 		fuiIcon,
 		fuiButton,
+		fuiDialog,
 	},
 	data() {
 		return {
@@ -146,6 +158,12 @@ export default {
 			receiverAvatar: '', // 接单人头像
 			receiverPhone: '', // 接单人电话号码
 			receiverName: '', // 接单人姓名
+			isApplyer: false, // 判断当前用户是不是发布订单的人
+			currentUserId: '', // 本地用户id
+			applyerId: '', // 发布订单的人的id
+			info: '', // 订单详细信息
+			imageUrl: '', // 订单详情图片
+			isAckOrder: false, // 是否确认完成订单
 		}
 	},
 	methods: {
@@ -178,16 +196,27 @@ export default {
 		},
 		commit() {
 			console.log('点击接单');
-			console.log("orderId: " + this.orderId);
-			this.$request.put(`/user/order/acceptOrder/${this.orderId}`).then((res) => {
-				if (res.code === 1) {
-					uni.showToast({
-						title: '接单成功',
-						icon: 'success'
+			console.log("订单id: " + this.orderId);
+			// 弹出对话框确认
+			uni.showModal({
+				title: "是否接单",
+				content: "接单后请及时完成订单任务哦~",
+				showCancel: true,
+				success: (res) => {
+					if (res.confirm) {
+					this.$request.put(`/user/order/acceptOrder/${this.orderId}`).then((res) => {
+						if (res.code === 1) {
+							uni.showToast({
+								title: '接单成功',
+								icon: 'success'
+							});
+							this.showHireling = true;
+							this.fetchOrder();
+						}
 					});
-					this.showHireling = true;
-					this.fetchOrder();
-				}
+
+					}
+				},
 			});
 		},
 		// 获取订单详情
@@ -208,6 +237,11 @@ export default {
 					this.avatar = order.avatar;
 					this.orderNumber = order.number;
 					this.receiverId = order.receiverId;
+					this.applyerId = order.userId;
+					this.info = order.info;
+					this.imageUrl = order.imageUrl;
+					console.log("订单信息：" + this.info);
+					console.log("订单图片：" + this.imageUrl);
 					if (order.status === 0) {
 						this.status = '待帮助';
 						this.showHireling = false;
@@ -216,7 +250,6 @@ export default {
 						this.showHireling = true;
 					} else if (order.status === 2) {
 						this.status = '已完成';
-						this.showHireling = true;
 					}
 				}
 				if (this.receiverId) {
@@ -231,11 +264,87 @@ export default {
 					});
 				}
 			});
-		}
+		},
+		// 检查当前用户是否为发布订单的人
+		checkIfApplyer() {
+			if (this.currentUserId === this.applyerId) {
+				this.isApplyer = true;
+			} else {
+				this.isApplyer = false;
+			}
+		},
+		// 点击“订单详情”事件
+		orderDetailInfo() {
+			if (this.currentUserId === this.applyerId || this.currentUserId === this.receiverId) {
+				uni.navigateTo({
+					url: `/pages/order-detail-info/order-detail-info?info=${this.info}&imageUrl=${this.imageUrl}`
+				});
+			} else {
+				uni.showModal({
+					title: "没有权限",
+					content: "请接单后查看订单详情",
+					showCancel: false,
+				});
+			}
+		},
+		// 确认完成订单
+		ackOrder() {
+			if (this.receiverId === null) {
+				uni.showModal({
+					title: "没有人接单",
+					content: "此单还没有人接，确定要完成订单吗？",
+					showCancel: true,
+					success: (res) => {
+						if (res.confirm) {
+							this.$request.put(`/user/order/ackOrder/${this.orderId}`).then((res) => {
+							if (res.code === 1) {
+								uni.showToast({
+									title: '订单已完成',
+									icon: 'success'
+								});
+								this.fetchOrder();
+							}
+							});
+						}
+					}
+				});
+			} else {
+				this.$request.put(`/user/order/ackOrder/${this.orderId}`).then((res) => {
+					if (res.code === 1) {
+						uni.showToast({
+							title: '订单已完成',
+							icon: 'success'
+						});
+						this.fetchOrder();
+					}
+				});
+			}
+		},
 	},
 	onLoad(options) {
+		// 获取当前用户id
+		this.currentUserId = uni.getStorageSync("xm-user")?.id;
+		console.log("当前用户id: " + this.currentUserId);
 		this.orderId = options.orderId;
 		this.fetchOrder();
+		this.isAckOrder = this.status === '已完成' ? true : false;
+		console.log("是否显示确认订单按钮：", this.isApplyer);
+	},
+	created() {
+		this.checkIfApplyer();
+	},
+	watch: {
+		currentUserId(newVal, oldVal) {
+			this.checkIfApplyer();
+		},
+		applyerId(newVal, oldVal) {
+			this.checkIfApplyer();
+		},
+		status(newVal, oldVal) {
+			if (newVal === '已完成') {
+				this.isAckOrder = true;
+			}
+		}
 	}
 }
 </script>
@@ -305,7 +414,7 @@ export default {
 
 .rounded-box {
 	position: relative;
-	top: 20rpx;
+	top: 10rpx;
 
 	display: flex;
 	align-items: center;

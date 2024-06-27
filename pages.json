@@ -148,6 +148,13 @@
 				"navigationBarTitleText": "其它服务",
 				"enablePullDownRefresh": false
 			}
+		},
+		{
+			"path" : "pages/order-detail-info/order-detail-info",
+			"style" : 
+			{
+				"navigationBarTitleText" : "订单详细信息"
+			}
 		}
 	],
 	"globalStyle": {
